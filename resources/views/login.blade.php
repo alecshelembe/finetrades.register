@@ -6,7 +6,10 @@
 
 <div class=" mx-auto max-w-sm p-4 ">
     <form class="space-y-6" action="#">
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
+        <div>
+            <img class="rounded-full mx-auto w-60 h-60" src="https://via.placeholder.com/640x480.png/0000ee?text=people+Faker+veritatis" alt="image description">
+        </div>
+        <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
             <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
