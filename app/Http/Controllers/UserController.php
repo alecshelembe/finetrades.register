@@ -16,14 +16,17 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
+        dd($request->all());
+
+        exit();
         $validatedData = $request->validate([
-            'email' => 'required|email|unique:users,email',
+            'floating_email' => 'required|email|unique:users,email',
             'password' => 'required|min:2',
-            'repeat_password' => 'required|same:password',
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'phone' => 'required|digits:10',
-            'option' => 'required'
+            'password_confirmation' => 'required|same:password',
+            'floating_first_name' => 'required|string|max:255',
+            'floating_last_name' => 'required|string|max:255',
+            'floating_phone' => 'required|digits:10',
+            'position' => 'required'
         ]);
 
         // Create the user
@@ -35,6 +38,7 @@ class UserController extends Controller
             'phone' => $validatedData['phone'],
             'option' => $validatedData['option'],
         ]);
+        // return redirect()->back()->with('success', 'Form submitted successfully!');
 
         return redirect()->route('users.create')->with('success', 'User created successfully!');
     }
