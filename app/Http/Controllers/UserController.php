@@ -16,24 +16,26 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-        $data = $request->input();
-        dd($data);
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|email|unique:users,email',
-        //     'password' => 'required|string|min:2',
-        // ]);
+        $validatedData = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:2',
+            'repeat_password' => 'required|same:password',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|digits:10',
+            'option' => 'required'
+        ]);
 
+        // Create the user
+        User::create([
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+            'phone' => $validatedData['phone'],
+            'option' => $validatedData['option'],
+        ]);
 
-        // // Create the user
-        // User::create([
-        //     'name' => $request->input('name'),
-        //     'email' => $request->input('email'),
-        //     'password' => Hash::make($request->input('password')),
-        // ]);
-
-        // // Redirect to a route or another page
-        // return redirect()->route('users.create')->with('success', 'User created successfully!');
+        return redirect()->route('users.create')->with('success', 'User created successfully!');
     }
 }
-
