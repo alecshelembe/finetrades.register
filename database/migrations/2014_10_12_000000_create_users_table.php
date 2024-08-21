@@ -13,22 +13,22 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            // $table->string('role');
-            $table->string('position');
-            // $table->string('age');
-            // $table->string('profile_image_url');
-            // $table->string('street');
-            // $table->string('street_2');
-            // $table->string('district');
-            // $table->string('city');
-            // $table->string('province');
-            // $table->string('postal_code');
+            $table->string('role')->default('user'); // Setting default value for 'role'
+            $table->string('position')->default('unknown'); // Setting default value for 'position'
+            $table->string('age')->default('0'); // Setting default value for 'age'
+            $table->string('profile_image_url')->default('default.jpg'); // Setting default value for 'profile_image_url'
+            $table->string('street')->default(''); // Setting default value for 'street'
+            $table->string('street_2')->default(''); // Setting default value for 'street_2'
+            $table->string('district')->default(''); // Setting default value for 'district'
+            $table->string('city')->default(''); // Setting default value for 'city'
+            $table->string('province')->default(''); // Setting default value for 'province'
+            $table->string('postal_code')->default(''); // Setting default value for 'postal_code'
             $table->rememberToken();
             $table->timestamps();
         });

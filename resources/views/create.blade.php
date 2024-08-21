@@ -3,11 +3,10 @@
 
 @section('content')
 
-@if (session('success'))
+<div class="mx-auto max-w-sm p-4">
+    @if (session('success'))
     <p style="color: green;">{{ session('success') }}</p>
 @endif
-
-<div class="mx-auto max-w-sm p-4">
 <form class="space-y-6" action="{{ route('users.store') }}" method="post">
     @csrf
     <div class="grid md:grid-cols-2 md:gap-6">

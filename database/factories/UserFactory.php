@@ -24,7 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-        'name' => fake()->name(),
+        'first_name' => fake()->name(),
         'last_name' => fake()->lastName(),
         // 'role' => fake()->randomElement(['admin', 'user', 'editor']),
         'position' => fake()->randomElement(['student', 'trainer', 'administrator']),
