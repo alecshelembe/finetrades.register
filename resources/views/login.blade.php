@@ -2,10 +2,17 @@
 @extends('welcome')
 
 @section('content')
-    
 
-<div class=" mx-auto max-w-sm p-4 ">
-    <form class="space-y-6" action="#">
+@if (session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+@endif
+
+@if(session('image'))
+    <img src="{{ asset('storage/images/' . session('image')) }}" alt="Uploaded Image">
+@endif
+
+<div class="mx-auto max-w-sm p-4">
+    <form class="space-y-6 animate-fadeIn" action="#">
         <div>
             <img class="rounded-full mx-auto w-60 h-60" src="https://via.placeholder.com/640x480.png/0000ee?text=people+Faker+veritatis" alt="image description">
         </div>
@@ -29,7 +36,7 @@
         </div>
         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+            Not registered? <a href="{{ route('users.create') }}" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
         </div>
     </form>
 </div>

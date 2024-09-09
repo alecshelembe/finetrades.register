@@ -1,3 +1,8 @@
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear
+
 -----------------------------------------------------------------------------
 ## Hi, from the author enjoy a basic form register.
 

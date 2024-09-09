@@ -14,7 +14,10 @@
         
     </head>
     <body>
+        {{-- <div id="map" style="height: 500px; width: 100%;"></div> --}}
         @yield('content')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}" defer></script>
+        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     </body>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</html>
+   </html>

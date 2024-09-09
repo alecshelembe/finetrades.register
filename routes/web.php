@@ -14,9 +14,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
+// Named GET route
 Route::get('/', function () {
     return view('login');
-});
+})->name('users.login');
 
 Route::get('/register', [UserController::class, 'create'])->name('users.create');
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');

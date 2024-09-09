@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('phone');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile_image_url')->nullable();
             $table->string('role')->default('user'); // Setting default value for 'role'
             $table->string('position')->default('unknown'); // Setting default value for 'position'
             $table->string('age')->default('0'); // Setting default value for 'age'
-            $table->string('profile_image_url')->default('default.jpg'); // Setting default value for 'profile_image_url'
             $table->string('street')->default(''); // Setting default value for 'street'
             $table->string('street_2')->default(''); // Setting default value for 'street_2'
             $table->string('district')->default(''); // Setting default value for 'district'
