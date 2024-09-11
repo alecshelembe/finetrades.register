@@ -24,6 +24,15 @@ class User extends Authenticatable
         'phone',
         'password',
         'profile_image_url',
+        'google_location',
+        'google_latitude',
+        'google_longitude',
+        'google_location_type',
+        'google_postal_code',
+        'google_city',
+        'web_source',
+        'location_id',
+        'package_selected',
     ];
 
     /**

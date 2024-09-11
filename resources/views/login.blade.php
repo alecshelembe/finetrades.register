@@ -3,10 +3,6 @@
 
 @section('content')
 
-@if (session('success'))
-    <p style="color: green;">{{ session('success') }}</p>
-@endif
-
 @if(session('image'))
     <img src="{{ asset('storage/images/' . session('image')) }}" alt="Uploaded Image">
 @endif
@@ -15,6 +11,9 @@
     <form class="space-y-6 animate-fadeIn" action="#">
         <div>
             <img class="rounded-full mx-auto w-60 h-60" src="https://via.placeholder.com/640x480.png/0000ee?text=people+Faker+veritatis" alt="image description">
+            @if (session('success'))
+                <p class="mx-auto" style="color: green;">{{ session('success') }}</p>
+            @endif
         </div>
         <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div>
