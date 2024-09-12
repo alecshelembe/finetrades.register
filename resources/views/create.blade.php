@@ -24,13 +24,13 @@
         </div>
     </div>
     
-    <!-- </div> -->
-    <div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="email" name="floating_email" value="{{ old('floating_email') }}" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required placeholder=""  />
-            <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><i class="fa-regular fa-envelope"></i> : Enter e-mail address</label>
-            @error('floating_email')
-            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+<!-- </div> -->
+<div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="email" name="floating_email" value="{{ old('floating_email') }}" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required placeholder=""  />
+        <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><i class="fa-regular fa-envelope"></i> : Enter e-mail address</label>
+        @error('floating_email')
+        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
         <div class="relative z-0 w-full mb-5 group">
@@ -42,24 +42,26 @@
         </div>
     </div>
     <div class="grid w-full">
+        <span class="text-sm text-gray-500"> <i class="fa-solid fa-location-dot"> </i> : Enter your home address <i class="fa-solid fa-circle-check"></i> address search</span>
         <div class="relative z-0 w-full mb-5 group">
             <input type="text" name="floating_address" value="{{ old('floating_address') }}" id="floating_address" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-            <label for="floating_address" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"><i class="fa-solid fa-location-dot"> </i> : Enter your home address</label>
+            <label for="floating_address" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Street name...</label>
             @error('floating_address')
             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
     </div>
+    
     <div class="grid w-full">
         <div class="relative z-0 w-full mb-5 group">
             <!-- Image Input Container -->
-                <label for="floating_prfile_image" class="mb-5 peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Upload a profile photo</label>
-                <input type="file" name="image" id="image-upload" class="mt-4 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" onchange="previewImage(event)" />
+            <label for="floating_prfile_image" class="mb-5 peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Upload a profile photo</label>
+            <input type="file" name="image" id="image-upload" class="mt-4 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" onchange="previewImage(event)" />
         </div>
     </div>
-        <div>
-            <input type="text" name="google_location" id="google_location" value="{{ old('google_location') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="google_latitude" id="google_latitude" value="{{ old('google_latitude') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+    <div>
+        <input type="text" name="google_location" id="google_location" value="{{ old('google_location') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+        <input type="text" name="google_latitude" id="google_latitude" value="{{ old('google_latitude') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
             <input type="text" name="google_longitude" id="google_longitude" value="{{ old('google_longitude') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
             <input type="text" name="google_location_type" id="google_location_type" value="{{ old('google_location_type') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
             <input type="text" name="google_postal_code" id="google_postal_code" value="{{ old('google_postal_code') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
@@ -113,12 +115,19 @@
         <div class="max-w-sm rounded overflow-hidden">
             <!-- Image Preview -->
                 <div>
-                    <img id="image-preview" src="" name="image" alt="Image Preview"  style="width: 50%; height: 50%;" class="hidden rounded-full object-cover rounded-md shadow-md" />
-                    @error('image')
+                <!-- <img id="image-preview" src="" name="image" alt="Image Preview"  style="width: 50%; height: 50%;" class="mx-auto hidden rounded-full object-cover rounded-md shadow-md" /> -->
+                <img id="image-preview" 
+                    src="" 
+                    name="image" 
+                    alt="Image Preview"  
+                    style="width: 150px; height: 150px; border-radius: 50%;" 
+                    class="mx-auto hidden object-cover shadow-md" />
+
+                @error('image')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                <p><span id="output-card-person-firstname" class="font-bold text-xl mb-2"></span><span id="output-card-person-lastname" class="font-bold text-xl mb-2"></span></p>
+                <p class="mx-auto text-center"><span id="output-card-person-firstname" class="font-bold text-xl mb-2"></span><span id="output-card-person-lastname" class="font-bold text-xl mb-2"></span></p>
             
                 <div class="hidden">
                     <p class="text-gray-700 text-base" id="output_web_source">  </p>
