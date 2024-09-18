@@ -2,27 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SignUpMail; // Correctly import the SignUpMail class
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    protected function sendEmail(array $validatedData)
+    {
+        $data = ['name' => $validatedData['floating_first_name']];
+        
+        Mail::to($validatedData['floating_email'])->send(new SignUpMail($data));
+    }
+
     // Show the form to create a new user
     public function create()
     {
-        // exit("hello world");
         return view('create');
     }
+
     public function store(Request $request)
     {
-        // dd($request->all()); // This will dump all the request data
         // Validate the request data
         $validatedData = $request->validate([
             'floating_email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed', // More secure length for passwords
-            'password_confirmation' => 'required|same:password',
+            'password' => 'required|string|min:8|confirmed',
             'google_location' => 'nullable|string|max:255',
+            'floating_address' => 'nullable|string|max:255',
             'google_latitude' => 'nullable|string|max:255',
             'google_longitude' => 'nullable|string|max:255',
             'google_location_type' => 'nullable|string|max:255',
@@ -33,12 +41,12 @@ class UserController extends Controller
             'location_id' => 'nullable|string|max:255',
             'floating_first_name' => 'required|string|max:255',
             'floating_last_name' => 'required|string|max:255',
-            'floating_phone' => 'required|digits:10', // This matches the South African phone number format you specified earlier
+            'floating_phone' => 'required|digits:10',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'position' => 'required|string|max:255',
         ]);
 
-        // Handling image upload if provided
+        // Handle image upload if provided
         $imagePath = 'images/default-profile.png'; // Default image path
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -50,7 +58,7 @@ class UserController extends Controller
         // Create the user with the validated data
         $user = User::create([
             'email' => $validatedData['floating_email'],
-            'password' => Hash::make($validatedData['password']), // Hash the password securely
+            'password' => Hash::make($validatedData['password']),
             'google_location' => $validatedData['google_location'] ?? '',
             'google_latitude' => $validatedData['google_latitude'] ?? '',
             'google_longitude' => $validatedData['google_longitude'] ?? '',
@@ -63,12 +71,18 @@ class UserController extends Controller
             'first_name' => $validatedData['floating_first_name'],
             'last_name' => $validatedData['floating_last_name'],
             'phone' => $validatedData['floating_phone'],
-            'profile_image_url' => $imagePath, // Store the uploaded or default image path
+            'profile_image_url' => $imagePath,
             'position' => $validatedData['position'],
         ]);
 
-        // Redirect with a success message
-        return redirect()->route('users.login')->with('success', 'User created successfully!');
+        // Call the sendEmail function with necessary data
+        $this->sendEmail($validatedData);
+
+        // Redirect with a success message and email
+        return redirect()->route('users.login')->with([
+            'success' => 'User created successfully!',
+            'email' => $user->email,
+            'profile_image_url' => $user->profile_image_url
+        ]);
     }
-    
 }

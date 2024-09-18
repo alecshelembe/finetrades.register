@@ -9,7 +9,7 @@
 
 <div class="mx-auto max-w-sm p-4">
     <form action="{{ route('users.loginStore') }}"  method="post" class="space-y-6 animate-fadeIn">
-        <img class="rounded-full mx-auto w-60 h-60" src="https://via.placeholder.com/640x480.png/0000ee?text=people+Faker+veritatis" alt="image description">
+        <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
         <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div class="text-center mx-auto">
             @csrf
@@ -21,8 +21,20 @@
             @endif
         </div>
         <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+            @if (session('success'))
+                <!-- Input pre-filled with the email from session -->
+                <input type="email" value="{{ session('email') }}" name="email" id="email" 
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                    focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 
+                    dark:text-white" required />
+            @else
+                <!-- Default input if there's no success message -->
+                <input type="email" name="email" id="email" 
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                    focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 
+                    dark:text-white" placeholder="name@company.com" required />
+            @endif
         </div>
         <div>
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>

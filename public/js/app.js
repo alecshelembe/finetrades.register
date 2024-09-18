@@ -32,7 +32,6 @@ function previewImage(event) {
         // Update address
         if (place.formatted_address) {
             document.getElementById('google_location').value = place.formatted_address;
-            document.getElementById('output_google_location').textContent = place.formatted_address;
         }
 
         // Update latitude and longitude
@@ -46,21 +45,18 @@ function previewImage(event) {
         // Update location type
         if (place.types.length > 0) {
             document.getElementById('google_location_type').value = place.types[0];
-            document.getElementById('output_google_location_type').textContent = place.types[0];
         }
 
         // Update postal code
         var postalCode = place.address_components.find(component => component.types.includes("postal_code"));
         if (postalCode) {
             document.getElementById('google_postal_code').value = postalCode.long_name;
-            document.getElementById('output_google_postal_code').textContent = postalCode.long_name;
         }
 
         // Update city
         var city = place.address_components.find(component => component.types.includes("locality"));
         if (city) {
             document.getElementById('google_city').value = city.long_name;
-            document.getElementById('output_google_city').textContent = city.long_name;
         }
 
         // Update additional fields
