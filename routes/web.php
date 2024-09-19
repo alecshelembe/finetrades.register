@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CreateController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -23,7 +24,10 @@ Route::post('/register-user', [UserController::class, 'store'])->name('users.sto
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('users.login');
-Route::post('/login-user', [LoginController::class, 'login'])->name('users.loginStore');
-Route::post('/logout-user', [LoginController::class, 'logout'])->name('users.logout');
+Route::post('/home', [LoginController::class, 'login'])->name('users.loginStore');
+Route::get('/home', [LoginController::class, 'login'])->name('users.loginStore');
+Route::get('/logout-user', [LoginController::class, 'logout'])->name('users.logout');
 
 // Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/create', [CreateController::class, 'create'])->name('create.post');

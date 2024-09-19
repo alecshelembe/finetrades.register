@@ -25,7 +25,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             // Authentication passed, redirect to intended page
             // return redirect()->intended('/');
-            exit("hello world");
+            return view('layouts.home');
             // Redirect with a success message
         }
 
