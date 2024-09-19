@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\OcrController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,15 @@ Route::post('/register-user', [UserController::class, 'store'])->name('users.sto
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('users.login');
 Route::post('/home', [LoginController::class, 'login'])->name('users.loginStore');
-Route::get('/home', [LoginController::class, 'login'])->name('users.loginStore');
+Route::get('/home', [LoginController::class, 'login'])->name('users.loginStoreGet');
 Route::get('/logout-user', [LoginController::class, 'logout'])->name('users.logout');
 
 // Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/create', [CreateController::class, 'create'])->name('create.post');
+// Route::get('/create', [CreateController::class, 'create'])->name('show.upload.form');
+
+Route::post('/process-image', [CreateController::class, 'processImage'])->name('process.image');
+
+Route::get('/create-post', [CreateController::class, 'showPost'])->name('create.raw.post');
+Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');

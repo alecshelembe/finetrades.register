@@ -42,7 +42,7 @@ class UserController extends Controller
             'floating_first_name' => 'required|string|max:255',
             'floating_last_name' => 'required|string|max:255',
             'floating_phone' => 'required|digits:10',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'position' => 'required|string|max:255',
         ]);
 
