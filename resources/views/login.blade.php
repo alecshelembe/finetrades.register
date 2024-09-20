@@ -8,7 +8,7 @@
 @endif
 
 <div class="mx-auto max-w-sm p-4">
-    <form action="{{ route('users.loginStore') }}"  method="post" class="space-y-6 animate-fadeIn">
+    <form action="{{ route('users.the.login') }}"  method="post" class="space-y-6 animate-fadeIn">
         <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
         <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div class="text-center mx-auto">

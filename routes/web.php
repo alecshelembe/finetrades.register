@@ -24,9 +24,10 @@ Route::get('/register', [UserController::class, 'create'])->name('users.create')
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('users.login');
-Route::post('/home', [LoginController::class, 'login'])->name('users.loginStore');
-Route::get('/home', [LoginController::class, 'login'])->name('users.loginStoreGet');
+Route::get('/', [LoginController::class, 'home'])->name('home');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+Route::post('/login-user', [LoginController::class, 'login'])->name('users.the.login');
 Route::get('/logout-user', [LoginController::class, 'logout'])->name('users.logout');
 
 // Route::post('/login', [LoginController::class, 'login']);

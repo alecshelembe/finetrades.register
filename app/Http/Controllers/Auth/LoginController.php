@@ -8,9 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        // to specific methods 
+        $this->middleware('auth')->only(['home']);
+    }
+
     public function showLoginForm()
     {
         return view('login');  // Assuming your blade is in the "auth" folder
+    }
+
+    public function home()
+    {
+        return view('layouts.home');
     }
 
     public function login(Request $request)
@@ -24,8 +35,7 @@ class LoginController extends Controller
         // Attempt to log the user in
         if (Auth::attempt($request->only('email', 'password'))) {
             // Authentication passed, redirect to intended page
-            // return redirect()->intended('/');
-            return view('layouts.home');
+            return redirect()->route('home'); // Assuming you have a named route 'home'
             // Redirect with a success message
         }
 
@@ -39,7 +49,7 @@ class LoginController extends Controller
     public function logout(){
         Auth::logout();
         // Redirect with a success message
-        return redirect()->route('users.login')->with('success', 'User logged out successfully!');
+        return redirect()->route('login')->with('success', 'User logged out successfully!');
 
     }
 }
