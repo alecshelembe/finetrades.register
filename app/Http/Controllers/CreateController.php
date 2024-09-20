@@ -36,9 +36,9 @@ class CreateController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             // Save the image in storage/app/public/images
-            $image->storeAs('public/images/uploaded', $imageName);
+            $image->storeAs('public/images/uploaded/', $imageName);
             // Update image path to be stored in the database
-            $imagePath = 'storage/images/uploaded' . $imageName; // Use 'storage' here for generating public-facing URL
+            $imagePath = 'storage/images/uploaded/' . $imageName; // Use 'storage' here for generating public-facing URL
         }
         
         $post = Post::create([
@@ -48,7 +48,9 @@ class CreateController extends Controller
             'author' => auth()->user()->email, // Add the logged-in user's email
         ]);
 
-        exit("Upload Successful");
+        return redirect()->route('home')->with([
+            'success' => 'Post Created Successfully'
+        ]);
         
     }
 

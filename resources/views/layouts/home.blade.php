@@ -8,7 +8,9 @@
 @if($posts->isEmpty())
         <p class=" text-2xl text-bold">No posts found.</p>
     @else
-        <ul>
+        @if (session('success'))
+        <p class="mx-auto" style="color: green;">{{ session('success') }}</p>
+        @endif
             @foreach($posts as $post)
             <figure class="flex flex-col items-center justify-center p-8 text-center bg-white rounded-t-lg md:rounded-none md:border dark:bg-gray-800 dark:border-gray-700">
                 <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -22,7 +24,6 @@
                 </a>
             </figure>
             @endforeach
-        </ul>
     @endif
  
 </div> 
