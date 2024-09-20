@@ -21,9 +21,13 @@ class LoginController extends Controller
 
     public function home()
     {
-        return view('layouts.home');
+        // Fetch data from the 'posts' table
+        $posts = \App\Models\Post::all();
+    
+        // Pass the data to the view
+        return view('layouts.home', ['posts' => $posts]);
     }
-
+    
     public function login(Request $request)
     {
         // Validate the input

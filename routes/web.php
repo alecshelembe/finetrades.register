@@ -37,5 +37,5 @@ Route::get('/create', [CreateController::class, 'create'])->name('create.post');
 
 Route::post('/process-image', [CreateController::class, 'processImage'])->name('process.image');
 
-Route::get('/create-post', [CreateController::class, 'showPost'])->name('create.raw.post');
+Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('create.raw.post');
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');

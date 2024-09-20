@@ -21,6 +21,9 @@
         <div class="mb-4">
             <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Upload Image to text output</label>
             <input type="file" name="image" id="image" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            @error('image')
+            <p class="text-red-600  mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Description -->

@@ -17,7 +17,7 @@ class CreateController extends Controller
         // $this->middleware('auth')->only(['create', 'store']);
     }
 
-    public function showPost()
+    public function showPostForm()
     {
         return view('ocr_result');
     }
@@ -27,7 +27,7 @@ class CreateController extends Controller
         $validatedData = $request->validate([
             'image' => 'required|image|mimes:jpg,jpeg,png|max:10240',
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
         ]);
         
         // Handle image upload if provided
@@ -36,9 +36,9 @@ class CreateController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             // Save the image in storage/app/public/images
-            $image->storeAs('public/images', $imageName);
+            $image->storeAs('public/images/uploaded', $imageName);
             // Update image path to be stored in the database
-            $imagePath = 'storage/images/' . $imageName; // Use 'storage' here for generating public-facing URL
+            $imagePath = 'storage/images/uploaded' . $imageName; // Use 'storage' here for generating public-facing URL
         }
         
         $post = Post::create([
@@ -63,19 +63,21 @@ class CreateController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
-        $imagePath = $request->file('image')->store('public/images');
+        $imagePath = $request->file('image')->store('public/images/demo-images');
 
         // Run OCR
         try {
             $text = (new TesseractOCR(storage_path('app/' . $imagePath)))
                 ->lang('eng')
                 ->run();
-
-            return view('ocr_result', ['text' => $text]);
+            
+                return redirect()->route('create.raw.post', ['text' => $text]);
 
         } catch (\Exception $e) {
             Log::error('OCR processing failed: ' . $e->getMessage());
-            return back()->withErrors('An error occurred while processing the image.');
+            return redirect()->route('create.post')->with([
+                'failed' => 'An error occurred while processing the image.!'
+            ]);
         }
     }
 }

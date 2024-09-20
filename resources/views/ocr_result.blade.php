@@ -14,19 +14,28 @@
         <div class="mb-4">
             <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Title</label>
             <input type="text" name="title" id="title" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Enter the title" >
+            @error('title')
+            <p class="text-red-600  mt-1">{{ $message }}</p>
+            @enderror
         </div>
         
         <!-- Image Upload -->
         <div class="mb-4">
             <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Image Post</label>
             <input type="file" name="image" id="image" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+            @error('image')
+            <p class="text-red-600  mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Description -->
         <div class="mb-4">
             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-            <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Enter a description" >{{ isset($text) ? $text : '' }}
+            <textarea name="description" id="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Enter a description" >{{ old('text', request()->query('text')) }}
             </textarea>
+            @error('description')
+            <p class="text-red-600  mt-1">{{ $message }}</p>
+            @enderror
         </div>
         
         <!-- Submit Button -->
