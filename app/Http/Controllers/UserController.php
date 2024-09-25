@@ -79,7 +79,7 @@ class UserController extends Controller
         $this->sendEmail($validatedData);
 
         // Redirect with a success message and email
-        return redirect()->route('users.login')->with([
+        return redirect()->route('login')->with([
             'success' => 'User created successfully!',
             'email' => $user->email,
             'profile_image_url' => $user->profile_image_url

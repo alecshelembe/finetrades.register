@@ -16,13 +16,15 @@
         <script src="{{asset('js/app.js')}}"></script>
         {{-- <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script> --}}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
         <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
         <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body class="m-4">
         
   
         {{-- <div id="map" style="height: 500px; width: 100%;"></div> --}}
         @yield('content')
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     </body>
    </html>

@@ -1,6 +1,9 @@
 // tailwind.config.js
 module.exports = {
-  content: ["./resources/**/*.{html,blade.php,js}"],
+  content: [
+    "./resources/**/*.{html,blade.php,js}",
+    "./node_modules/flowbite/**/*.js"
+  ],
   theme: {
     extend: {
       animation: {
@@ -19,7 +22,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 
 
