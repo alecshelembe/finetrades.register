@@ -148,7 +148,7 @@
          
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
         <div class=" font-medium text-gray-500 dark:text-gray-300">
-            Already registered? <a href="{{ route('users.login') }}" class="text-blue-700 hover:underline dark:text-blue-500">Login</a>
+            Already registered? <a href="{{ route('login') }}" class="text-blue-700 hover:underline dark:text-blue-500">Login</a>
         </div>
     </div>
     </form>

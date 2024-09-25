@@ -77,6 +77,7 @@ function previewImage(event) {
 
 // Ensure the script runs after the Google Maps API is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Check if the Google Maps API and Places library are available
     if (typeof google !== 'undefined' && google.maps && google.maps.places) {
         initializeAutocomplete(); // Initialize the autocomplete functionality
