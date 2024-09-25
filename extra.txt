@@ -1,2 +1,3 @@
 https://chatgpt.com/share/59d7c8ea-c92a-49a1-a4ac-4cd42aa2da31
 npx tailwindcss -o public/css/output.css
+https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migration-to-new-installation-methods.html

@@ -40,9 +40,9 @@
             @enderror
         </div>
 
-        {{-- <script>
-            CKEDITOR.replace('ClassicEditor');
-        </script> --}}
+        <script>
+            CKEDITOR.replace('description');
+        </script>
         <div>
             <img id="image-preview" 
             src="" 

@@ -36,22 +36,5 @@
             </div>
             @endforeach
     @endif
-
-<!-- Blade Template Button -->
-{{-- <div class="fixed bottom-4 right-4 m-4">
-    <a href="{{ route('create.post') }}" class="bg-blue-500 p-4 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-        <!-- Plus icon -->
-       <span class="text-lg">Create</span>
-    </a>
-</div>
-
-
-<div class="fixed bottom-4 left-4 m-4">
-    <a href="{{ route('users.logout') }}" class="bg-blue-500 p-4 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-        <!-- Plus icon -->
-        Go Offline
-    </a>
-</div> --}}
-
-
+    
 @endsection
