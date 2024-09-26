@@ -36,6 +36,8 @@ Route::post('/register-user', [UserController::class, 'store'])->name('users.sto
 Route::get('/', [LoginController::class, 'home'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
+Route::get('/QrCodeLogin', [LoginController::class, 'showLoginFormQrCode'])->name('login.qrcode');
+
 Route::post('/login-user', [LoginController::class, 'login'])->name('users.the.login');
 Route::get('/logout-user', [LoginController::class, 'logout'])->name('users.logout');
 
@@ -48,3 +50,5 @@ Route::post('/process-image', [CreateController::class, 'processImage'])->name('
 
 Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('create.raw.post');
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
+
+Route::post('/qr-login', [App\Http\Controllers\LoginController::class, 'qrLogin'])->name('qr.login');
