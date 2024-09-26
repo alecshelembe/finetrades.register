@@ -61,11 +61,23 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             // Authentication passed, redirect to the intended page
             if (isset($code_is_present)) {
-                // Record the login in the daily registration table
-                DailyRegistration::create([
-                    'email' => auth()->user()->email,
-                    'login_time' => now(),
-                ]);
+                // Check if the email exists in the past 24 hours
+                $exists = DailyRegistration::where('email', auth()->user()->email)
+                            ->where('login_time', '>=', Carbon::now()->subDay()) // Past 24 hours
+                            ->exists();
+            
+                if (!$exists) {
+                    // Record the login in the daily registration table
+                    DailyRegistration::create([
+                        'email' => auth()->user()->email,
+                        'login_time' => now(),
+                    ]);
+                } else {
+                    // Handle the case where the email has already been recorded in the last 24 hours
+                    // For example, you could return an error message
+                    $exists = 'Already Registed';
+                    return view('login')->with(compact('exists'));
+                }
             }
             
             
