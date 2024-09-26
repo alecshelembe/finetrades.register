@@ -10,9 +10,25 @@
 <div class="mx-auto max-w-sm p-4">
     <form action="{{ route('users.the.login') }}"  method="post" class="space-y-6 animate-fadeIn">
         <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
-        <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
+        {{-- <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5> --}}
+        <a href="{{ route('login') }}">
+            <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">
+                Sign in to our platform
+            </h5>
+        </a>
+        
         <div class="text-center mx-auto">
             @csrf
+            @if(isset($code))
+                <input type="text" name="code" value="{{ $code }}" hidden/>
+                <p class="mx-auto" style="color: green;">{{$correct_qrcode}}</p>
+
+            @endif
+
+            @if(isset($incorrect_qrcode))
+                <p class="mx-auto" style="color: red;">{{$incorrect_qrcode}}</p>
+            @endif
+
             @if (session('success'))
                 <p class="mx-auto" style="color: green;">{{ session('success') }}</p>
             @endif

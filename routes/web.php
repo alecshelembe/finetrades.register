@@ -51,4 +51,4 @@ Route::post('/process-image', [CreateController::class, 'processImage'])->name('
 Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('create.raw.post');
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
 
-Route::post('/qr-login', [App\Http\Controllers\LoginController::class, 'qrLogin'])->name('qr.login');
+Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');

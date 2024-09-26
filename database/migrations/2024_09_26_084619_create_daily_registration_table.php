@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('daily_registration', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('email');
             $table->timestamp('login_time');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('email')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

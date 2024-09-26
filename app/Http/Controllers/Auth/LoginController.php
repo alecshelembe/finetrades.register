@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Models\DailyRegistration;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,25 +44,40 @@ class LoginController extends Controller
     
     public function login(Request $request)
     {
-        // Validate the input
+        if ($request->has('code')) {
+            // The request contains the 'email' field
+            $request->validate([
+                'code' => 'required|string',
+            ]);
+            $code_is_present = true;
+        }
+        // Validate the input for email and password
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:2',
         ]);
-
+    
         // Attempt to log the user in
         if (Auth::attempt($request->only('email', 'password'))) {
-            // Authentication passed, redirect to intended page
+            // Authentication passed, redirect to the intended page
+            if (isset($code_is_present)) {
+                // Record the login in the daily registration table
+                DailyRegistration::create([
+                    'email' => auth()->user()->email,
+                    'login_time' => now(),
+                ]);
+            }
+            
+            
             return redirect()->route('home'); // Assuming you have a named route 'home'
-            // Redirect with a success message
-        }
-
-        // Authentication failed, redirect back with error
+        } 
+    
+        // Authentication failed, redirect back with an error
         return back()->withErrors([
             'failed' => 'The provided credentials do not match our records.',
         ]);
-
     }
+    
 
     public function logout(){
         Auth::logout();
@@ -76,18 +93,18 @@ class LoginController extends Controller
         $request->validate([
             'code' => 'required|string',
         ]);
-
-        exit("hellow world");
-
+        
         // Check if the code matches today's QR code
         $qrCode = \DB::table('qrcodes')
-                    ->where('code', $request->code)
-                    ->where('expires_at', '>', Carbon::now())
-                    ->first();
-
+        ->where('code', $request->code)
+        ->where('expires_at', '>', Carbon::now())
+        ->first();
+        
         if ($qrCode) {
-            // Log the user in (adjust as needed for your authentication system)
-            auth()->loginUsingId($request->user_id); // Assuming you're passing the user ID
+
+            $code = $qrCode->code;
+            $correct_qrcode = "Correct Qrcode";
+            return view('login')->with(compact('code', 'correct_qrcode'));
 
             // Record the login in the daily registration table
             \DB::table('daily_registration')->insert([
@@ -95,9 +112,11 @@ class LoginController extends Controller
                 'login_time' => now(),
             ]);
 
-            return redirect()->route('home')->with('success', 'Login successful!');
         } else {
-            return back()->withErrors(['code' => 'Invalid or expired QR code.']);
+            // return back()->withErrors(['code' => 'Invalid or expired QR code.']);
+            $incorrect_qrcode = "Incorrect Qrcode";
+            return view('login')->with('incorrect_qrcode', $incorrect_qrcode);
+
         }
     }
 }
