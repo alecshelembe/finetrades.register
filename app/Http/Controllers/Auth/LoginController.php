@@ -25,7 +25,7 @@ class LoginController extends Controller
         ->latest('expires_at')
         ->first();
 
-        return view('layouts.QrCodeRegister', compact('qrCode'));    
+        return view('login', compact('qrCode'));    
     }
 
     public function showLoginForm()
@@ -75,7 +75,7 @@ class LoginController extends Controller
                 } else {
                     // Handle the case where the email has already been recorded in the last 24 hours
                     // For example, you could return an error message
-                    $exists = 'Already Registed';
+                    $exists = 'You have already registed';
                     return view('login')->with(compact('exists'));
                 }
             }
@@ -112,10 +112,12 @@ class LoginController extends Controller
         ->where('expires_at', '>', Carbon::now())
         ->first();
         
+        $currentDateTime = Carbon::now();
+        
         if ($qrCode) {
 
             $code = $qrCode->code;
-            $correct_qrcode = "Correct Qrcode";
+            $correct_qrcode = "Register log @ ".$currentDateTime. ' Please continue';
             return view('login')->with(compact('code', 'correct_qrcode'));
 
             // Record the login in the daily registration table
@@ -126,7 +128,7 @@ class LoginController extends Controller
 
         } else {
             // return back()->withErrors(['code' => 'Invalid or expired QR code.']);
-            $incorrect_qrcode = "Incorrect Qrcode";
+            $incorrect_qrcode = "Error log @ ".$currentDateTime;
             return view('login')->with('incorrect_qrcode', $incorrect_qrcode);
 
         }

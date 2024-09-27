@@ -20,6 +20,7 @@ class GenerateDailyQRCode extends Command
         // Create a QR code and save it to the database
         \DB::table('qrcodes')->insert([
             'code' => $code,
+            // 'expires_at' => Carbon::now()->addMinutes(5), // Set expiration for 5 minutes
             'expires_at' => Carbon::now()->addDay(), // Set expiration for 24 hours
             'created_at' => now(),
             'updated_at' => now(),

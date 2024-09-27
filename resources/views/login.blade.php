@@ -8,21 +8,44 @@
 @endif
 
 <div class="mx-auto max-w-sm p-4">
+            @if (Request::is('QrCodeLogin'))
+            
+                @if($qrCode)
+                    <form method="GET" action="{{ route('qr.login') }}">
+                    @csrf
+                        <div class="qr-code">
+                            <center><div class="rounded-full mx-auto w-60 h-60" >{!! QrCode::size(170)->generate(route('qr.login', ['code' => $qrCode->code])) !!}</div></center>
+                        </div>
+                    <!-- Hidden input to store the QR code -->
+                        <input type="hidden" name="code" value="{{ $qrCode->code }}">
+                    <!-- Submit button -->
+                    {{-- <button type="submit" class="btn btn-primary">Submit QR Code</button> --}}
+                    </form>
+                @else
+                    <p>No QR code available.</p>
+                @endif
+                <!-- Do something if the current URL matches -->
+            @else
+                <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
+            @endif
     <form action="{{ route('users.the.login') }}"  method="post" class="space-y-6 animate-fadeIn">
-        <img class="rounded-full mx-auto w-60 h-60" src="{{ config('services.project.logo_image') }}" alt="image description">
-        {{-- <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign in to our platform</h5> --}}
+
         <a href="{{ route('login') }}">
             <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">
-                Sign in to our platform
+                <span class="text-bold text-underlined">Sign in </span> to our platform
             </h5>
         </a>
         
+
         <div class="text-center mx-auto">
             @csrf
             @if(isset($code))
                 <input type="text" name="code" value="{{ $code }}" hidden/>
                 <p class="mx-auto" style="color: green;">{{$correct_qrcode}}</p>
+            @endif
 
+            @if (Request::is('QrCodeLogin'))
+                <input type="hidden" name="code" value="{{ $qrCode->code }}">
             @endif
 
             @if(isset($incorrect_qrcode))

@@ -14,7 +14,10 @@
         {{-- <button type="submit" class="btn btn-primary">Submit QR Code</button> --}}
     </form>
 @else
-    <p>No QR code available for today.</p>
+    <p>No QR code available.</p>
 @endif
 
 @endsection
+
+
+

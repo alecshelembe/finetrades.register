@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
         
         // Schedule the command to run daily at midnight
         $schedule->command('qrcode:generate-daily')->daily();
+        // $schedule->command('qrcode:generate-daily')->everyTwoMinutes();
+        
     }
 
     /**
