@@ -14,7 +14,8 @@ class UserController extends Controller
     {
         $data = ['name' => $validatedData['floating_first_name']];
         
-        Mail::to($validatedData['floating_email'])->send(new SignUpMail($data));
+        Mail::to($validatedData['floating_email'])->queue(new SignUpMail($data));
+        // Mail::to($validatedData['floating_email'])->send(new SignUpMail($data));
     }
 
     // Show the form to create a new user

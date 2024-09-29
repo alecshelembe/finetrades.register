@@ -10,7 +10,10 @@
         </div>
     @else
         @if (session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
+            <p style="color: green;">{{ session('success') }}</p>
+        @endif
+        @if(session('exists'))
+            <p class="mx-auto" style="color: orange;"> {{ session('exists') }}</p>
         @endif
             @foreach($posts as $post)
             <div>

@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if ($request->has('code')) {
-            // The request contains the 'email' field
+            // The request contains the 'code' field
             $request->validate([
                 'code' => 'required|string',
             ]);
@@ -56,9 +56,14 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required|string|min:2',
         ]);
-    
+        
         // Attempt to log the user in
         if (Auth::attempt($request->only('email', 'password'))) {
+
+            $currentDateTime = Carbon::now();
+
+           // Update the updated_at column only
+            auth()->user()->touch();
             // Authentication passed, redirect to the intended page
             if (isset($code_is_present)) {
                 // Check if the email exists in the past 24 hours
@@ -72,11 +77,17 @@ class LoginController extends Controller
                         'email' => auth()->user()->email,
                         'login_time' => now(),
                     ]);
+
+                    $exists = "Register log @ ".$currentDateTime. ' Successful';
+                    
+                    return redirect()->route('home')->with('exists', $exists);
+
                 } else {
                     // Handle the case where the email has already been recorded in the last 24 hours
                     // For example, you could return an error message
-                    $exists = 'You have already registed';
-                    return view('login')->with(compact('exists'));
+                    $exists = "Register log already exists.";
+
+                    return redirect()->route('home')->with('exists', $exists);
                 }
             }
             

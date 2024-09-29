@@ -21,6 +21,7 @@
                     <!-- Submit button -->
                     {{-- <button type="submit" class="btn btn-primary">Submit QR Code</button> --}}
                     </form>
+
                 @else
                     <p>No QR code available.</p>
                 @endif
@@ -30,11 +31,11 @@
             @endif
     <form action="{{ route('users.the.login') }}"  method="post" class="space-y-6 animate-fadeIn">
 
-        <a href="{{ route('login') }}">
-            <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">
-                <span class="text-bold text-underlined">Sign in </span> to our platform
-            </h5>
-        </a>
+        <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">
+            <a href="{{ route('login') }}">
+                <span class="text-bold underline">Sign in</span> to our platform
+            </a>
+        </h5>
         
 
         <div class="text-center mx-auto">
@@ -52,9 +53,6 @@
                 <p class="mx-auto" style="color: red;">{{$incorrect_qrcode}}</p>
             @endif
             
-            @if(isset($exists))
-                <p class="mx-auto" style="color: green;">{{$exists}}</p>
-            @endif
             @if (session('success'))
                 <p class="mx-auto" style="color: green;">{{ session('success') }}</p>
             @endif
