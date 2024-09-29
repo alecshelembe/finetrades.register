@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\OcrController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +54,19 @@ Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('cre
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
+
+// routes/web.php
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/sessions', [BookingController::class, 'index']); // Show available sessions
+    Route::post('/bookings', [BookingController::class, 'store']); // Make a booking
+    Route::get('/bookings', [BookingController::class, 'show']); // View user bookings
+    Route::put('/bookings/{id}', [BookingController::class, 'update']); // Modify booking
+    Route::delete('/bookings/{id}', [BookingController::class, 'destroy']); // Cancel booking
+});
+
+Route::get('/calendar/events', [CalendarController::class, 'index'])->name('calendar.index');
+Route::post('/calendar/create', [CalendarController::class, 'store'])->name('calendar.store');
+
+Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('handleOAuthCallback');
