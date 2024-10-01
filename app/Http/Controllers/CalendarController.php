@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Log;
 
 class CalendarController extends Controller
 {
+     // Apply the auth middleware to all methods in this controller
+     public function __construct()
+     {
+         $this->middleware('auth');
+         // to specific methods 
+         // $this->middleware('auth')->only(['create', 'store']);
+     }
+     
     public function handleOAuthCallback()
     {
         $client = new \Google_Client();

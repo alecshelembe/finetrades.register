@@ -69,4 +69,4 @@ Route::middleware('auth')->group(function () {
 Route::get('/calendar/events', [CalendarController::class, 'index'])->name('calendar.index');
 Route::post('/calendar/create', [CalendarController::class, 'store'])->name('calendar.store');
 
-Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('handleOAuthCallback');
+Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
