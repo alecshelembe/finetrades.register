@@ -5,6 +5,9 @@
 
 <script defer src="{{ asset('js/jq_app.js') }}"></script>
 <script defer src="{{ asset('js/app.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
+
+
 
 <div class="mx-auto max-w-sm p-4">
 <form class="space-y-6 animate-fadeIn" action="{{ route('users.store') }}" enctype="multipart/form-data" method="post">

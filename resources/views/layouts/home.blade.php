@@ -26,17 +26,27 @@
                     @else
                     <p class="text-sm mt-2"><i class="fa-regular fa-circle-question"></i> Not Verified </p>
                 @endif
-                <p>{{$post->description}}</p>
-                <p class="text-sm mt-2">By {{$post->author}}</p>
-                <p class="text-sm">{{$post->created_at}}</p>
-
+                @if ($post->description != 0)
+                    <p>{{ $post->description }}</p>
+                @endif
+                
                 @if ($post->plate === 1)
                 <img class="h-auto md:w-full" src="{{$post->image_url}}" alt="">
-                    
                 @else
                     {{-- <p>This post is not verified.</p> --}}
                 @endif
-                
+                <div>
+                    <form action={{ route('returnSpeech') }} target="_blank" method="POST">
+                        @csrf
+                        <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$post->description}}</textarea>
+                        <input type="text" name="audio_id" value="<?php echo(rand());?>" hidden>
+                        <button type="submit">Generate Speech <i class=" fa-solid fa-volume-high"></i></button>
+                    </form>
+                </div>
+                <div>
+                    <p class="text-sm mt-2">By {{$post->author}}</p>
+                    <p class="text-sm">{{$post->created_at}}</p>
+                </div>   
             </div>
             @endforeach
     @endif

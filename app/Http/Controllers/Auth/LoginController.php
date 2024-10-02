@@ -91,10 +91,13 @@ class LoginController extends Controller
                 }
             }
 
-            $exists = DailyRegistration::where('email', auth()->user()->email)
-            ->where('login_time', '>=', Carbon::now()->subDay()) // Check past 24 hours
-            ->exists();
+            // Get the current date
+            $today = Carbon::today();
 
+            // Check if the user has logged in today
+            $exists = DailyRegistration::where('email', auth()->id())
+                ->whereDate('created_at', $today)
+                ->exists();
             if (!$exists) {
                 $exists = '<a href="' . route('login.qrcode') . '" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded bg-gray-100 hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                                 <!-- Plus icon -->

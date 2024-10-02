@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\OcrController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\SpeechController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +67,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/bookings/{id}', [BookingController::class, 'destroy']); // Cancel booking
 });
 
+
 Route::get('/calendar/events', [CalendarController::class, 'index'])->name('calendar.index');
 Route::post('/calendar/create', [CalendarController::class, 'store'])->name('calendar.store');
-
 Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
+
+Route::post('/generate-speech', [SpeechController::class, 'generateSpeech'])->name('returnSpeech');
+Route::get('/text-to-speech', [SpeechController::class, 'showForm'])->name('getSpeech');
