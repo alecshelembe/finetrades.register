@@ -70,11 +70,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/calendar/google/events', [CalendarController::class, 'index'])->name('calendar.index');
 Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
 
-Route::post('/generate-speech', [SpeechController::class, 'generateSpeech'])->name('returnSpeech');
+Route::post('/generate-speech', [SpeechControllser::class, 'generateSpeech'])->name('returnSpeech');
 Route::get('/text-to-speech', [SpeechController::class, 'showForm'])->name('getSpeech');
 
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
 
 // Route::get('events/{event}', 'EventController@show')->name('events.show');

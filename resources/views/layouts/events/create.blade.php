@@ -26,17 +26,18 @@
         </div>
 
         <div class="mb-4">
-            <label for="start_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Start Date</label>
-            <input type="date" id="start_date" name="start_date" value="{{ old('start_date') }}" required 
+            <label for="start_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Start Date and Time</label>
+            <input type="datetime-local" id="start_date" name="start_date" value="{{ old('start_date') }}" required 
                 class="block w-full mt-1 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                @error('start_date')
-                <p class="text-red-600  mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+            @error('start_date')
+                <p class="text-red-600 mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        
 
         <div class="mb-4">
             <label for="end_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">End Date</label>
-            <input type="date" id="end_date" name="end_date" value="{{ old('end_date') }}" required 
+            <input type="datetime-local" id="end_date" name="end_date" value="{{ old('end_date') }}" required 
                 class="block w-full mt-1 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @error('end_date')
                 <p class="text-red-600  mt-1">{{ $message }}</p>

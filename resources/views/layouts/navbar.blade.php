@@ -32,16 +32,22 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
               <!-- Dropdown menu -->
               <div id="dropdownNavbar_activities" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                   <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                      <li>
+                      {{-- <li>
                         <a href="{{ route('GoogleCanlendarHandleOAuthCallback') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
                         <span class="text-lg ">Google Calender Events</span>
                       </a>
-                    </li>
+                    </li> --}}
                     <li>
+                      <a href="{{ route('events.showAll') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                      <span class="text-lg ">View All</span>
+                    </a>
+                  </li>
+                  <li>
                       <a href="{{ route('events.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                      <span class="text-lg ">Create Event</span>
+                      <span class="text-lg ">Create</span>
                     </a>
                   </li>
                   </ul>

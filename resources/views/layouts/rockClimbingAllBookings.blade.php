@@ -18,7 +18,7 @@
                     <br>
                     <a href="#" class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <img class="object-contain w-full h-auto max-h-96 rounded-t-lg" 
-                        src="{{ asset('storage/sci-bono-content/climbing-wall--experience.jpg') }}" alt="">
+                        src="{{ asset('storage/sci-bono-content/rockclimbing.jpg') }}" alt="">
                                     <div class="p-4 leading-normal">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $event['title'] }}</h5>
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $event['description'] ?? 'No description available' }}</p>
