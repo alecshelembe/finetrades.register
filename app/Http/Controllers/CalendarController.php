@@ -47,7 +47,7 @@ class CalendarController extends Controller
     public function index() {
         try {
             // Fetch events for the next 7 days
-            $events = Event::get(Carbon::now(), Carbon::now()->addDays(7));
+            $events = Event::get(Carbon::now(), Carbon::now()->addDays(30));
     
             // Format and return the events to the view
             $formattedEvents = $events->map(function ($event) {

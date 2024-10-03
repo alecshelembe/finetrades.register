@@ -11,6 +11,7 @@ use App\Http\Controllers\OcrController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\SpeechController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +59,6 @@ Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
 
 // routes/web.php
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/sessions', [BookingController::class, 'index']); // Show available sessions
     Route::post('/bookings', [BookingController::class, 'store']); // Make a booking
@@ -67,10 +67,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/bookings/{id}', [BookingController::class, 'destroy']); // Cancel booking
 });
 
-
-Route::get('/calendar/events', [CalendarController::class, 'index'])->name('calendar.index');
-Route::post('/calendar/create', [CalendarController::class, 'store'])->name('calendar.store');
+Route::get('/calendar/google/events', [CalendarController::class, 'index'])->name('calendar.index');
 Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
 
 Route::post('/generate-speech', [SpeechController::class, 'generateSpeech'])->name('returnSpeech');
 Route::get('/text-to-speech', [SpeechController::class, 'showForm'])->name('getSpeech');
+
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+Route::post('/events/store', [EventController::class, 'store'])->name('events.store');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+
+// Route::get('events/{event}', 'EventController@show')->name('events.show');

@@ -11,6 +11,13 @@ class BookingController extends Controller
     // show(): Show user-specific bookings.
     // update(): Modify an existing booking (e.g., reschedule).
     // destroy(): Cancel a booking.
+    // Apply the auth middleware to all methods in this controller
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // to specific methods 
+        // $this->middleware('auth')->only(['create', 'store']);
+    }
 
     public function index(){
 
