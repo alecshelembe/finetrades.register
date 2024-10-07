@@ -18,11 +18,28 @@
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
         <script defer src="https://kit.fontawesome.com/06f647569e.js" crossorigin="anonymous"></script>
     </head>
+    <style>
+        @media (max-width: 700px) { /* Tailwind's sm breakpoint */
+        .Scibono-background {
+            /* Background color */
+            /* background-color: #f0f0f0; */
+
+            /* Background image */
+            background-image: url('{{ asset('storage/sci-bono-content/browser-fill-2.png') }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* background-position: center; */
+            }
+           
+        }
+
+    </style>
     <body class="m-4">
-        
-  
+
         {{-- <div id="map" style="height: 500px; width: 100%;"></div> --}}
         @yield('content')
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+        <footer>
+        </footer>
     </body>
    </html>

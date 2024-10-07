@@ -49,8 +49,7 @@
             <select id="activity" value="{{ old('activity') }}" name="activity" 
                     class="block w-full mt-1 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="rockclimbing">Rock Climbing</option>
-                {{-- <option value="hiking">Hiking</option> --}}
-                {{-- <option value="ziplining">Zip Lining</option> --}}
+                <option value="venue">Venue Hire</option>
                 {{-- <option value="bouldering">Bouldering</option> --}}
             </select>
             @error('activity')

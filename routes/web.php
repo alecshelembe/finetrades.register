@@ -12,6 +12,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\SpeechController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\DirectorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,4 +79,5 @@ Route::post('/events/store', [EventController::class, 'store'])->name('events.st
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll');
 
+Route::get('/rockclimbing', [DirectorController::class, 'rocks'])->name('events.rockclimbing');
 // Route::get('events/{event}', 'EventController@show')->name('events.show');

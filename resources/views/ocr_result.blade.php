@@ -9,6 +9,7 @@
 <div class="max-w-3xl mx-auto p-6 bg-white  rounded-lg mt-10">
     <h1 class="text-2xl font-bold mb-6 text-gray-800">Create a New Post</h1>
 
+
     <form action="{{ route('save.raw.post') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
