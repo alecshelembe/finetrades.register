@@ -2,9 +2,9 @@
 
 <nav class="sticky top-0 z-50 
 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="w-full flex flex-wrap items-center justify-between mx-auto p-4">
       <a  href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={{ config('services.project.logo_image') }} class="h-8" alt="Flowbite Logo" />
+          <img src={{ config('services.project.logo_image') }} class="h-14" alt="Flowbite Logo" />
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Development</span>
       </a>
       <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
@@ -38,13 +38,30 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                         <span class="text-lg ">Google Calender Events</span>
                       </a>
                     </li> --}}
-                    
+                    <li>
+                      <a href="{{ route('events.showAll') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                      <span class="text-lg ">All</span>
+                    </a>
+                  </li>  
                   <li>
-                    <a href="{{ route('events.showAll') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <a href="{{ route('events.rockclimbing') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       <!-- Plus icon -->
-                    <span class="text-lg ">Upcomming</span>
+                    <span class="text-lg ">Rock Climbing</span>
                   </a>
                 </li>
+                <li>
+                  <a href="{{ route('events.venuehire') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <!-- Plus icon -->
+                  <span class="text-lg ">Venue Hire</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('events.guidedtours') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <!-- Plus icon -->
+                <span class="text-lg ">Guided Tours</span>
+              </a>
+            </li>
                   {{-- <li>
                       <a href="{{ route('events.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
