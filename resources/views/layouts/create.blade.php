@@ -8,8 +8,14 @@
 <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
     <h1 class="text-2xl font-bold mb-6 text-gray-800">Create a New Post</h1>
 
+<div class="text-right">
+    <a href="{{ route('create.mobile.post') }}" class="bg-blue-500 p-4 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+        <!-- Plus icon -->
+        Create Social Post
+    </a>
+</div>
     
-<p class="mb-3 text-gray-500 dark:text-gray-400 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start">We invite you to help bring the wonders of science to life for young minds! By uploading content—whether it's photos, videos, or insights from your visit—you can make a powerful impact on science education and youth development. Your unique perspective from the museum will inspire curiosity and spark a love for learning in students who may not have the chance to visit in person. Together, we can create an engaging, virtual learning experience that connects young people to the fascinating world of science and discovery. Your contribution could be the key to unlocking their potential!</p>
+<p class="mb-3 mt-8 text-gray-500 dark:text-gray-400 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start">We invite you to help bring the wonders of science to life for young minds! By uploading content—whether it's photos, videos, or insights from your visit—you can make a powerful impact on science education and youth development. Your unique perspective from the museum will inspire curiosity and spark a love for learning in students who may not have the chance to visit in person. Together, we can create an engaging, virtual learning experience that connects young people to the fascinating world of science and discovery. Your contribution could be the key to unlocking their potential!</p>
 <p class="text-gray-500 dark:text-gray-400">Before uploading, please take a moment to review your content to ensure it is safe, appropriate, and relevant for educational purposes. Your attention to detail helps us create a positive and enriching learning environment for all. Thank you for contributing to inspiring the next generation!</p>
 
     <div class="mt-4">

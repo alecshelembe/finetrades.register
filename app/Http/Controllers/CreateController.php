@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 use Illuminate\Support\Facades\Log;
-use App\Models\Post;
+use App\Models\SocialPost;
 
 class CreateController extends Controller
 {
@@ -21,6 +21,57 @@ class CreateController extends Controller
     {
         return view('ocr_result');
     }
+
+    public function showMobilePostForm()
+    {
+        return view('mobile.create');
+    }
+    
+    public function viewSocialPost()
+    {
+         // Fetch all social posts
+        $socialPosts = SocialPost::all();
+
+        // Pass posts to the view
+        return view('mobile.home', compact('socialPosts'));
+    }
+
+    public function saveSocialPost(Request $request)
+    {
+        // Validate inputs
+        $request->validate([
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description' => 'required|string|max:255',
+        ]);
+    
+        $imagePaths = [];
+    
+        // Handle each image
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                if ($file) {
+                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    // Save the image in storage/app/public/images/social/
+                    $file->storeAs('public/images/social/', $imageName);
+                    // Update image path to be stored in the database
+                    $imagePath = 'storage/images/social/' . $imageName; // Use 'storage' here for generating public-facing URL
+                    $imagePaths[] = $imagePath;
+                }
+            }
+        }
+    
+        // Save the description and image paths to the database
+        SocialPost::create([
+            'description' => $request->description,
+            'images' => json_encode($imagePaths),
+            'email' => auth()->user()->email, // Get the logged-in user's email
+        ]);
+    
+        return redirect()->route('home')->with([
+            'success' => 'Post Created Successfully'
+        ]);
+    }
+    
 
     public function savePost(Request $request)
     {

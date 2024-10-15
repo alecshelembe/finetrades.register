@@ -54,6 +54,13 @@ Route::get('/create', [CreateController::class, 'create'])->name('create.post');
 Route::post('/process-image', [CreateController::class, 'processImage'])->name('process.image');
 
 Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('create.raw.post');
+
+Route::post('/create-social-post', [CreateController::class, 'saveSocialPost'])->name('social.save.post');
+
+Route::get('/view-social-post', [CreateController::class, 'viewSocialPost'])->name('social.view.posts');
+
+Route::get('/create-mobile-post', [CreateController::class, 'showMobilePostForm'])->name('create.mobile.post');
+
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
@@ -82,5 +89,5 @@ Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll
 Route::get('/rockclimbing', [DirectorController::class, 'rockClimbing'])->name('events.rockclimbing');
 Route::get('/venue-hire', [DirectorController::class, 'venueHire'])->name('events.venuehire');
 
-Route::get('/guided-tours', [DirectorController::class, 'showImages'])->name('events.guidedtours');
+Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery');
 // Route::get('events/{event}', 'EventController@show')->name('events.show');

@@ -26,6 +26,25 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           </li> --}}
           <li>
             <li>
+              <button id="dropdownNavbarLink_social" data-dropdown-toggle="dropdownNavbar_social" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Social  <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div id="dropdownNavbar_social" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                      <li>
+                        <a href="{{ route('social.view.posts') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                          <!-- Plus icon -->
+                        <span class="text-lg">Media</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="py-1">
+                    {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a> --}}
+                  </div>
+              </div>
+          </li>
+            <li>
               <button id="dropdownNavbarLink_activities" data-dropdown-toggle="dropdownNavbar_activities" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Activities  <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
               </button>
@@ -41,7 +60,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     <li>
                       <a href="{{ route('events.showAll') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                      <span class="text-lg ">All</span>
+                      <span class="text-lg ">Calendar Events</span>
                     </a>
                   </li>  
                   <li>
@@ -57,9 +76,9 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 </a>
               </li>
               <li>
-                <a href="{{ route('events.guidedtours') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <a href="{{ route('gallery') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   <!-- Plus icon -->
-                <span class="text-lg ">Guided Tours</span>
+                <span class="text-lg ">Gallery</span>
               </a>
             </li>
                   {{-- <li>
@@ -114,6 +133,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 </div>
             </div>
         </li>
+        
 
           <li>
              

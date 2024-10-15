@@ -40,6 +40,8 @@ class LoginController extends Controller
     
         // Pass the data to the view
         return view('layouts.home', ['posts' => $posts]);
+
+        
     }
     
     public function login(Request $request)

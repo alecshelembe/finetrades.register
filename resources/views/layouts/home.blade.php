@@ -31,8 +31,10 @@
                 @endif
                 
                 @if ($post->plate === 1)
-                <img class="h-auto md:w-full" src="{{$post->image_url}}" alt="">
-                @else
+                    <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
+                        <img class="h-auto md:w-full" src="{{$post->image_url}}" alt="">
+                    </div>    
+                    @else
                     {{-- <p>This post is not verified.</p> --}}
                 @endif
                 <div>
