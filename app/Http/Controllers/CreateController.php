@@ -31,7 +31,12 @@ class CreateController extends Controller
     {
          // Fetch all social posts
         $socialPosts = SocialPost::all();
-
+        // Convert the timestamps to a readable format
+        foreach ($socialPosts as $post) {
+            $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
+            $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
+            $post->email = $emailParts[0]; // Get the part before the '@'
+        }
         // Pass posts to the view
         return view('mobile.home', compact('socialPosts'));
     }

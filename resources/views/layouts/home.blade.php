@@ -3,7 +3,7 @@
 
 @section('content')
   
-@include('layouts.navbar')
+@include('layouts.navbar')  
 @if($posts->isEmpty())
         <div class="flex flex-col justify-between p-4 leading-normal">
             <h5>No Posts here..</h5>
@@ -32,7 +32,7 @@
                 
                 @if ($post->plate === 1)
                     <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
-                        <img class="h-auto md:w-full" src="{{$post->image_url}}" alt="">
+                        <img loading="lazy" class="h-auto md:w-full" src="{{$post->image_url}}" alt="">
                     </div>    
                     @else
                     {{-- <p>This post is not verified.</p> --}}
@@ -47,7 +47,8 @@
                 </div>
                 <div>
                     <p class="text-sm mt-2">By {{$post->author}}</p>
-                    <p class="text-sm">{{$post->created_at}}</p>
+                    <p class="text-sm">{{$post->formatted_time}}</p>
+                    {{-- <p class="text-sm">{{$post->created_at}}</p>formatted_time --}}
                 </div>   
             </div>
             @endforeach

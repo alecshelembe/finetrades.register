@@ -37,6 +37,13 @@ class LoginController extends Controller
     {
         // Fetch data from the 'posts' table
         $posts = \App\Models\Post::all();
+
+        foreach ($posts as $post) {
+            $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
+            // Extract the author's name from the email
+            $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
+            $post->author = $emailParts[0]; // Get the part before the '@'
+        }
     
         // Pass the data to the view
         return view('layouts.home', ['posts' => $posts]);

@@ -22,19 +22,21 @@
                             <figure class="max-w-lg relative">
                                 <img class="h-auto max-w-full rounded-lg cursor-pointer" 
                                      src="{{ asset($image) }}" 
-                                     alt="Post image">
+                                     alt="Post image"
+                                     loading="lazy">
                             </figure>
                         @endforeach
                     @else
                         <p>No images found.</p>
                     @endif
                 </div>
-    
+     
                 {{-- Display post description and email --}}
                 <div class="mt-4">
                     <p class="text-sm text-gray-700">{{ $post->description }}</p>
                     <p class="text-xs text-gray-500">Posted by: {{ $post->email }}</p>
                     {{-- <p class="text-xs text-gray-500">{{ $post->created_at }}</p> --}}
+                    <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
                 </div>
             </div>
         @endforeach

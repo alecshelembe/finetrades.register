@@ -39,4 +39,5 @@ return [
         'logo_image' => env('LOGO_IMAGE'),
     ],
 
+
 ];
