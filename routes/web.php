@@ -35,6 +35,9 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // Named GET route
 
 Route::get('/register', [UserController::class, 'create'])->name('users.create');
+
+Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.create.ref');
+
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 

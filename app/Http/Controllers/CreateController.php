@@ -115,6 +115,7 @@ class CreateController extends Controller
         return view('layouts.create');
     }
 
+   
     public function processImage(Request $request)
     {
         $request->validate([

@@ -19,10 +19,48 @@ class UserController extends Controller
     }
 
     // Show the form to create a new user
-    public function create()
+    public function create(Request $request)
     {
-        return view('create');
+        // Check for 'email' query parameter and decode it
+        if ($request->has('email')) {
+            $encodedEmail = $request->query('email');
+            $decoded_email = base64_decode($encodedEmail, true); // Decode and check for validity
+
+            if ($decoded_email === false) {
+                return response()->json(['error' => 'Invalid email encoding'], 400);
+            }
+      
+            
+            // Validate the decoded email if necessary
+            if ($decoded_email) {
+                $request->validate(['ref' => 'email|max:255']);
+            }
+            // Get the part of the email before the '@'
+            $emailParts = explode('@', $decoded_email); // Assuming you have an 'email' column
+            $refPart = $emailParts[0]; // Get the part before the '@'
+            $refPart = preg_replace('/[^a-zA-Z]/', '', $emailParts[0]); // Allow only letters
+
+            
+            return view('create', [
+                'decoded_email' => $refPart, // Pass the decoded email
+                'fullemail' => $decoded_email, // Pass the decoded email
+            ]);
+        } else {
+            return view('create', [
+                'decoded_email' => '', // Pass the decoded email
+            ]);
+        }
+
     }
+
+    public function createRef(){
+
+        // $email = auth()->user()->email;
+        $email = base64_encode(auth()->user()->email);
+        // Redirect with email as a query parameter
+        return redirect()->route('users.create', ['email' => $email]);
+    }
+
 
     public function store(Request $request)
     {
@@ -45,6 +83,8 @@ class UserController extends Controller
             'floating_phone' => 'required|digits:10',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'position' => 'required|string|max:255',
+            'ref' => 'sometimes|email|max:255', // Optional ref field
+
         ]);
 
         // Handle image upload if provided
@@ -74,6 +114,8 @@ class UserController extends Controller
             'phone' => $validatedData['floating_phone'],
             'profile_image_url' => $imagePath,
             'position' => $validatedData['position'],
+            'ref' => $validatedData['ref'] ?? null, // Use the validated ref or null
+
         ]);
 
         // Call the sendEmail function with necessary data
