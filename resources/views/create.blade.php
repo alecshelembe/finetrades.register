@@ -13,7 +13,7 @@
 <form class="space-y-6 animate-fadeIn" action="{{ route('users.store') }}" enctype="multipart/form-data" method="post">
     @csrf
     @if($decoded_email)
-        <p class="text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">reference: {{ $decoded_email }}</p>
+        <p class="text-gray-500 text-sm">Reference: {{ $decoded_email }}</p>
         @error('ref')
         <p class="text-red-600  mt-1">{{ $message }}</p>
         @enderror
