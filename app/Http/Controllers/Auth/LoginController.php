@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -35,20 +36,7 @@ class LoginController extends Controller
 
     public function home()
     {
-        // Fetch data from the 'posts' table
-        $posts = \App\Models\Post::all();
-
-        foreach ($posts as $post) {
-            $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
-            // Extract the author's name from the email
-            $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
-            $post->author = $emailParts[0]; // Get the part before the '@'
-        }
-    
-        // Pass the data to the view
-        return view('layouts.home', ['posts' => $posts]);
-
-        
+               
     }
     
     public function login(Request $request)
@@ -68,6 +56,19 @@ class LoginController extends Controller
         
         // Attempt to log the user in
         if (Auth::attempt($request->only('email', 'password'))) {
+            // if (Auth::user()->role === 'admin') {
+            $user = Auth::user();
+            // Retrieve the user's name
+            $first_name = $user->first_name; // Adjust if your name field is different
+            $last_name = $user->last_name; // Adjust if your name field is different
+            $phone = $user->phone; // Adjust if your name field is different
+            $ref = $user->ref; // Adjust if your name field is different
+
+            // Optionally, store the user's name in the session
+            session(['first_name' => $first_name]);
+            session(['last_name' => $last_name]);
+            session(['phone' => $phone]);
+            session(['ref' => $ref]);
 
             $currentDateTime = Carbon::now();
 
@@ -81,23 +82,52 @@ class LoginController extends Controller
                             ->exists();
             
                 if (!$exists) {
-                    // Record the login in the daily registration table
-                    DailyRegistration::create([
-                        'email' => auth()->user()->email,
-                        'login_time' => now(),
-                    ]);
+                    try {
+                        DailyRegistration::create([
+                            'email' => auth()->user()->email,
+                            'login_time' => now(),
+                            'name_first' => auth()->user()->first_name,
+                            'name_last' => auth()->user()->last_name,
+                            'email_address' => auth()->user()->email,
+                            'cell_number' => auth()->user()->phone,
+                            'm_payment_id' => Str::uuid()->toString(),
+                            'item_name' => 'Entry',
+                            'custom_int1' => rand(),
+                            'custom_str1' => bin2hex(random_bytes(5)), // Random string of 10 characters
+                            'payment_method' => 'dc',
+                        ]);
 
-                    $exists = "Register log @ ".$currentDateTime. ' Successful';
-                    
-                    return redirect()->route('home')->with('exists', $exists);
+                        } catch (\Exception $e) {
+                            \Log::error('Error inserting DailyRegistration: ' . $e->getMessage());
+                            // return redirect()->back()->withErrors(['error' => 'Unable to record login.']);
+                        }
+
+                        $registration = DailyRegistration::where('email', auth()->user()->email)
+                        ->where('login_time', '>=', Carbon::now()->subDay())
+                        ->first();
+
+                        $jsonRegistration = $registration ? $registration->toJson() : json_encode(null);
+
+                        // $exists = "Entry log @ ".$currentDateTime. ' Successful';
+                        // Pass missing values to the view
+                        return view('payfast.here', ['registration' => $jsonRegistration]);
 
                 } else {
                     // Handle the case where the email has already been recorded in the last 24 hours
                     // For example, you could return an error message
-                    $exists = "Register log already exists.";
+                    // $exists = "Entry log exists.";
+                    // return redirect()->route('home')->with('exists', $exists);
+                    $registration = DailyRegistration::where('email', auth()->user()->email)
+                    ->where('login_time', '>=', Carbon::now()->subDay())
+                    ->first();
 
-                    return redirect()->route('home')->with('exists', $exists);
-                }
+                    $jsonRegistration = $registration ? $registration->toJson() : json_encode(null);
+
+                    // $exists = "Entry log @ ".$currentDateTime. ' Successful';
+                    // Pass missing values to the view
+                    return view('payfast.here', ['registration' => $jsonRegistration]);
+
+                }   
             }
 
             // Get the current date
@@ -110,7 +140,7 @@ class LoginController extends Controller
             if (!$exists) {
                 $exists = '<a href="' . route('login.qrcode') . '" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded bg-gray-100 hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                                 <!-- Plus icon -->
-                               Daily Register
+                               Daily Entry
                             </a>';
             } else {
                 

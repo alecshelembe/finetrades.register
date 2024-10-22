@@ -13,6 +13,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\SpeechController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\PayfastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.c
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 
-Route::get('/', [LoginController::class, 'home'])->name('home');
+Route::get('/', [CreateController::class, 'viewSocialPosts'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/QrCodeLogin', [LoginController::class, 'showLoginFormQrCode'])->name('login.qrcode');
@@ -60,7 +61,7 @@ Route::get('/create-post', [CreateController::class, 'showPostForm'])->name('cre
 
 Route::post('/create-social-post', [CreateController::class, 'saveSocialPost'])->name('social.save.post');
 
-Route::get('/view-social-post', [CreateController::class, 'viewSocialPost'])->name('social.view.posts');
+Route::get('/view-social-posts', [CreateController::class, 'viewSocialPosts'])->name('social.view.posts');
 
 Route::get('/create-mobile-post', [CreateController::class, 'showMobilePostForm'])->name('create.mobile.post');
 
@@ -91,6 +92,13 @@ Route::get('/events', [EventController::class, 'showAll'])->name('events.showAll
 
 Route::get('/rockclimbing', [DirectorController::class, 'rockClimbing'])->name('events.rockclimbing');
 Route::get('/venue-hire', [DirectorController::class, 'venueHire'])->name('events.venuehire');
+Route::get('/science-posts', [DirectorController::class, 'sciencePosts'])->name('science.posts');
 
 Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery');
 // Route::get('events/{event}', 'EventController@show')->name('events.show');
+Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
+Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');
+Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
+Route::get('/payfast-notify', [PayfastController::class, 'notify_url'])->name('notify_url');
+
+Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');

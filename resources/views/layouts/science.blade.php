@@ -9,13 +9,6 @@
             <h5>No Posts here..</h5>
         </div>
     @else
-        @if (session('success'))
-            <p style="color: green;">{{ session('success') }}</p>
-        @endif
-        @if(session('exists'))
-            <p class="mx-auto" style="color: orange;"> {!! session('exists') !!}</p>
-        @endif
-
             @foreach($posts as $post)
             <div>
                 {{-- <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{$post->image_url}}" alt=""> --}}

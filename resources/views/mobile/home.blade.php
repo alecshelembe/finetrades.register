@@ -3,12 +3,12 @@
 @section('content')
 @include('layouts.navbar')
 
-<div class="max-w-3xl mx-auto p-6 bg-white rounded-lg ">
+{{-- <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg "> --}}
     <div class="flex justify-end">
-        <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">Toggle View</button>
+        <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg"><i class="fa-regular fa-eye"></i> View</button>
     </div>
     
-    <div id="postContainer" class="grid grid-cols-2 gap-4 mt-4">
+    <div id="postContainer" class="grid grid-cols-2 gap-4 mt-4 lg:grid-cols-4">
         @foreach ($socialPosts as $post)
             <div class="p-2  bg-white">
                 <div class="grid grid-cols-2 gap-4">
@@ -60,5 +60,5 @@
         });
     </script>
     
-</div>
+{{-- </div> --}}
 @endsection

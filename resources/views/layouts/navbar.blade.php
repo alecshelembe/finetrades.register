@@ -20,10 +20,15 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           </li>
           <li>
             <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-          </li>
+          </li>--}}
           <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-          </li> --}}
+            @if (session('success'))
+              <p style="color: green; ">{{ session('success') }}</p>
+            @endif
+            @if(session('exists'))
+              <p class="mx-auto" style="background-coloer:#f5f5f5; color: green;"> {!! session('exists') !!}</p>
+            @endif
+          </li> 
           <li>
             <li>
               <button id="dropdownNavbarLink_social" data-dropdown-toggle="dropdownNavbar_social" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Social  <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -35,9 +40,15 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                       <li>
                         <a href="{{ route('social.view.posts') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
-                        <span class="text-lg">Media</span>
+                        <span class="text-lg">Media Posts</span>
                       </a>
                     </li>
+                    <li>
+                      <a href="{{ route('science.posts') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                        <!-- Plus icon -->
+                      <span class="text-lg">Science Posts</span>
+                    </a>
+                  </li>
                   </ul>
                   <div class="py-1">
                     {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a> --}}
@@ -60,7 +71,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     <li>
                       <a href="{{ route('events.showAll') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                      <span class="text-lg ">Calendar Events</span>
+                      <span class="text-lg ">Calendar Posts</span>
                     </a>
                   </li>  
                   <li>
@@ -133,10 +144,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 </div>
             </div>
         </li>
-        
-
           <li>
-             
           </li>
           <li>
           <button id="dropdownNavbarLink_Settings" data-dropdown-toggle="dropdownNavbar_Settings" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Settings  <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -144,17 +152,23 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             </button>
             <!-- Dropdown menu -->
             <div id="dropdownNavbar_Settings" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                    <li>
-                      <a href="{{ route('users.create.ref') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <ul class="py-2 text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                  <li>
+                    <a href="{{ route('login.qrcode') }}" class=" text-lg block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <!-- Plus icon -->
+                      Daily Entry
+                    </a>
+                  </li>  
+                  <li>
+                      <a href="{{ route('users.create.ref') }}" class=" text-lg block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
                           Create Ref
                       </a>
                   </li>
                     <li>
-                      <a href="{{ route('users.logout') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <a href="{{ route('users.logout') }}" class="text-lg block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
-                          Sign Out
+                          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
                       </a>
                   </li>
                 </ul>
@@ -169,4 +183,5 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       </div>
     </div>
   </nav>
+  
   

@@ -27,7 +27,7 @@ class CreateController extends Controller
         return view('mobile.create');
     }
     
-    public function viewSocialPost()
+    public function viewSocialPosts()
     {
          // Fetch all social posts
         $socialPosts = SocialPost::all();
