@@ -82,9 +82,11 @@ dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
         const itemDescriptionInput = document.getElementById('item_description');
         const itemDescriptionInputNotJson = document.getElementById('item_description_notjson');
 
-        // Prices
-        const adultPrice = 80;
-        const childrenPrice = 60;
+        const adultPrice = {{ env('ADULT_PRICE', 80) }}; // Default value is 80 if env var is not set
+        const childrenPrice = {{ env('CHILDREN_PRICE', 60) }}; // Default value is 60 if env var is not set
+
+        console.log('Adult Price:', adultPrice);
+        console.log('Children Price:', childrenPrice);
 
         function updateDescription() {
             const adults = parseInt(adultInput.value) || 0;

@@ -94,7 +94,7 @@ class LoginController extends Controller
                             'item_name' => 'Entry',
                             'custom_int1' => rand(),
                             'custom_str1' => bin2hex(random_bytes(5)), // Random string of 10 characters
-                            'payment_method' => 'dc',
+                            'payment_method' => '',
                         ]);
 
                         } catch (\Exception $e) {
@@ -134,8 +134,8 @@ class LoginController extends Controller
             $today = Carbon::today();
 
             // Check if the user has logged in today
-            $exists = DailyRegistration::where('email', auth()->id())
-                ->whereDate('created_at', $today)
+            $exists = DailyRegistration::where('email', auth()->user()->email)
+                ->where('login_time', '>=', Carbon::now()->subDay()) // Past 24 hours
                 ->exists();
             if (!$exists) {
                 $exists = '<a href="' . route('login.qrcode') . '" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded bg-gray-100 hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
