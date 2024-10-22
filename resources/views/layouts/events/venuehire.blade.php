@@ -158,9 +158,14 @@ Ample and secure, parking is available at the venue itself but the Gautrain Stat
         </ul>
     </div>
 </div>
+<h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Experience world class corporate and education venues</h5>
+
 <div class="flex items-center justify-between mt-4">
     {{-- <span class="text-3xl font-bold text-gray-900 dark:text-white">R 100</span> --}}
-    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Make a request</a>
+        <a href="{{ route('events.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            <!-- Plus icon -->
+          <span class="text-lg">Click here - to schedule your event</span>
+        </a>
 </div>
 @endsection
 

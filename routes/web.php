@@ -14,6 +14,8 @@ use App\Http\Controllers\SpeechController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\PayfastController;
+use App\Http\Controllers\PayfastITNController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +101,5 @@ Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery
 Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
 Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');
 Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
-Route::get('/payfast-notify', [PayfastController::class, 'notify_url'])->name('notify_url');
-
+Route::get('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
 Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');

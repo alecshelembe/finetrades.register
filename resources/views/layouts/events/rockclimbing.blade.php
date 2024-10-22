@@ -91,7 +91,10 @@
             </div>
             <div class="flex items-center justify-between ">
                 {{-- <span class="text-3xl font-bold text-gray-900 dark:text-white">R 100</span> --}}
-                <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Make a request</a>
+                    <a href="{{ route('events.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <!-- Plus icon -->
+                    <span class="text-lg">Click here - to schedule your event</span>
+                  </a>
             </div>
         </div>
     </ul>
@@ -99,26 +102,6 @@
 </div>
 
 
-{{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <div>
-    <h1 class="text-3xl font-bold mb-6"> Event Details</h1>
-    <ul class="space-y-8">
-        <a href="#" class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <img class="object-contain w-full h-auto max-h-96 rounded-lg" src="{{ asset('storage/sci-bono-content/climbing-wall--experience.jpg') }}" >
-                <div class="p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Rock Climbing</h5>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> <strong>Description</strong> </p>
-                <p class="text-gray-700 mt-2">
-                    <strong>End Date</strong>  <br>
-                    <strong>Activity</strong>  <br>
-                    <strong>Status</strong>  <br>
-                    <strong>Audience</strong>
-                </p>    
-            </div>
-        </a>
-    </ul>
-</div>
-</div> --}}
 @endsection
 
 
