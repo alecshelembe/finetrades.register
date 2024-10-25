@@ -34,9 +34,16 @@
                 {{-- Display post description and email --}}
                 <div class="mt-4">
                     <p class="text-sm text-gray-700">{{ $post->description }}</p>
-                    <p class="text-xs text-gray-500">Posted by: {{ $post->email }}</p>
+                    <p class="text-xs text-gray-500">Posted by: {{ $post->author }}</p>
                     {{-- <p class="text-xs text-gray-500">{{ $post->created_at }}</p> --}}
                     <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
+
+                    @if (auth()->user()->email === $post->email)
+                        <form action="{{ route('posts.hide', $post->id) }}" method="POST">
+                            @csrf
+                            <button class="px-2 text-xs py-2 "><i class="fa-regular fa-eye"></i> Hide my post</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @endforeach

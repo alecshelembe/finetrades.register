@@ -8,6 +8,8 @@ use App\Services\PayfastService;
 use App\Models\DailyRegistration;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+
 
 class PayfastITNController extends Controller
 {
@@ -21,11 +23,13 @@ class PayfastITNController extends Controller
     public function handleITN(Request $request, PayfastService $payfastService)
     {
         // Send a 200 OK response
-        return response()->json($this->processITN($request, $payfastService));
+        
+        return response()->json($this->processITN($request, $payfastService), 200);
     }
 
     private function processITN(Request $request, PayfastService $payfastService)
     {
+        
         $pfData = $request->post();
 
         // Strip any slashes in data
@@ -37,7 +41,7 @@ class PayfastITNController extends Controller
         $pfParamString = http_build_query(array_diff_key($pfData, ['signature' => '']));
         
         // Fetch the registration record
-        $registration = DailyRegistration::where('email', $pfData['email'])
+        $registration = DailyRegistration::where('email', $pfData['email_address'])
             ->where('login_time', '>=', Carbon::now()->subDay())
             ->first();
 
@@ -50,7 +54,7 @@ class PayfastITNController extends Controller
             'payment_data' => $payfastService->validPaymentData($cartTotal, $pfData),
             'server_confirmation' => $payfastService->validServerConfirmation($pfParamString, $this->pfHost),
         ];
-
+        
         if (array_product($checks)) {
             // All checks have passed, the payment is successful
             return $this->createTransaction($pfData, 'success');
@@ -90,6 +94,9 @@ class PayfastITNController extends Controller
 
         PayfastTransaction::create($transactionData);
 
-        return ['status' => $status, 'message' => $message];
+        return [
+         'status' => $status,
+         'message' => $message,
+        ];
     }
 }

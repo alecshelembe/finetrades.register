@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DailyRegistration;
+use Carbon\Carbon;
 
 class PayfastController extends Controller
 {
@@ -14,14 +16,24 @@ class PayfastController extends Controller
         // Validate incoming request data
         $request->validate([
             'amount' => 'required|numeric',
-            'item_name' => 'required|string',
+            'item_description' => 'required|string',
+            'email' => 'required|email',
             // Add more validation rules as necessary
         ]);
-        
 
         // Collect all form data from the request
         $data = $request->except('_token','email','id','login_time','created_at','updated_at',); // Exclude the CSRF token from data
         
+        // Fetch the registration record
+        $registration = DailyRegistration::where('email', $data['email_address'])
+        ->where('login_time', '>=', Carbon::now()->subDay())
+        ->first();
+        
+        // Update fields
+        $registration->amount = $data['amount']; // Set newAmount to the desired value
+        $registration->item_description = $data['item_description']; // Set newAmount to the desired value
+        $registration->save(); // Save the changes to the database
+
         // Passphrase and testing mode from environment variables
         $passPhrase = env('PAYFAST_PASSPHRASE', 'default_passphrase');
         $testingMode = env('PAYFAST_TESTING_MODE', true);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 use Illuminate\Support\Facades\Log;
 use App\Models\SocialPost;
+use App\Models\Post;
 
 class CreateController extends Controller
 {
@@ -29,17 +30,77 @@ class CreateController extends Controller
     
     public function viewSocialPosts()
     {
-         // Fetch all social posts
-        $socialPosts = SocialPost::all();
+            // Fetch all social posts with status 'show'
+        $socialPosts = SocialPost::where('status', 'show')->get();
+
         // Convert the timestamps to a readable format
         foreach ($socialPosts as $post) {
             $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
             $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
-            $post->email = $emailParts[0]; // Get the part before the '@'
+            $post->author = $emailParts[0]; // Get the part before the '@'
+            $post->email = $post->email;// Get the part before the '@'
         }
+
         // Pass posts to the view
         return view('mobile.home', compact('socialPosts'));
     }
+
+    public function sciencePosts()
+    {
+        // Fetch data from the 'posts' table
+        $posts = Post::where('status', 'show')->get();
+
+        foreach ($posts as $post) {
+            $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
+            // Extract the author's name from the email
+            $post->email = $post->author; // Get the part before the '@'
+            $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
+            $post->author = $emailParts[0]; // Get the part before the '@'
+        }
+    
+        // Pass the data to the view
+        return view('layouts.science', ['posts' => $posts]);
+
+    }
+
+    public function scienceHide($id)
+    {
+        // Find the post by ID
+        $post = Post::findOrFail($id);
+        
+        // Check if the logged-in user's author matches the post's email
+        if (auth()->user()->email === $post->author) {
+            // Update the status to 'hide' (or however you want to handle hiding)
+            $post->status = 'hide';
+            $post->save();
+            
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Post hidden successfully.');
+        }
+
+        // Redirect back with an error message if the user doesn't match
+        return redirect()->back()->with('error', 'You are not authorized to hide this post.');
+    }
+
+    public function hide($id)
+    {
+        // Find the post by ID
+        $post = SocialPost::findOrFail($id);
+        
+        // Check if the logged-in user's email matches the post's email
+        if (auth()->user()->email === $post->email) {
+            // Update the status to 'hide' (or however you want to handle hiding)
+            $post->status = 'hide';
+            $post->save();
+            
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Post hidden successfully.');
+        }
+
+        // Redirect back with an error message if the user doesn't match
+        return redirect()->back()->with('error', 'You are not authorized to hide this post.');
+    }
+
 
     public function saveSocialPost(Request $request)
     {

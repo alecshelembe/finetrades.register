@@ -42,6 +42,12 @@
                     <p class="text-sm mt-2">By {{$post->author}}</p>
                     <p class="text-sm">{{$post->formatted_time}}</p>
                     {{-- <p class="text-sm">{{$post->created_at}}</p>formatted_time --}}
+                    @if (auth()->user()->email === $post->email)
+                          <form action="{{ route('science.posts.hide', $post->id) }}" method="POST">
+                              @csrf
+                              <button class="px-2 text-xs py-2 "><i class="fa-regular fa-eye"></i> Hide my post</button>
+                          </form>
+                      @endif
                 </div>   
             </div>
             @endforeach
