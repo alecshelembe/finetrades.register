@@ -102,7 +102,8 @@ Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery
 Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
 Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');
 Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
-Route::get('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
+Route::post('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
+Route::get('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url.g');
 Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');
 
 Route::post('/posts/{id}/hide', [CreateController::class, 'hide'])->name('posts.hide');

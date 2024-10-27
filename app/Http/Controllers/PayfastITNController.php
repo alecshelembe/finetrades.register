@@ -30,7 +30,7 @@ class PayfastITNController extends Controller
     private function processITN(Request $request, PayfastService $payfastService)
     {
         
-        $pfData = $request->post();
+        $pfData = $request->all();
 
         // Strip any slashes in data
         array_walk($pfData, function (&$val) {

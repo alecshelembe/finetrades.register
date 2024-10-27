@@ -87,4 +87,19 @@ class PayfastController extends Controller
         // Handle IPN (Instant Payment Notification) from PayFast here
         return response()->json(['status' => 'success'], 200);
     }
+
+    
+    function generateApiSignature($pfData, $passPhrase) {
+
+        if ($passPhrase !== null) {
+            $pfData['passphrase'] = $passPhrase;
+        }
+
+        // Sort the array by key, alphabetically
+        ksort($pfData);
+
+        //create parameter string
+        $pfParamString = http_build_query($pfData);
+        return md5($pfParamString);
+    }
 }
