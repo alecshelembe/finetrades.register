@@ -32,6 +32,7 @@ class AddColumnsToDailyRegistrationTable extends Migration
             $table->boolean('email_confirmation')->default(env('EMAIL_CONFIRMATION', '')); // Default to confirmed
             $table->string('confirmation_address')->default(env('CONFIRMATION_ADDRESS', '')); // Default empty
             $table->text('payment_method')->nullable(env('PAYMENT_METHOD', ''));
+            $table->string('payment_status')->default('No Action Taken');
         });
     }
 
@@ -62,6 +63,7 @@ class AddColumnsToDailyRegistrationTable extends Migration
                 'amount',
                 'item_name',
                 'item_description',
+                'payment_status',
             ]);
         });
     }

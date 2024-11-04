@@ -89,13 +89,7 @@
                 </div>
                 <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span> --}}
             </div>
-            <div class="flex items-center justify-between ">
-                {{-- <span class="text-3xl font-bold text-gray-900 dark:text-white">R 100</span> --}}
-                    <a href="{{ route('events.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                      <!-- Plus icon -->
-                    <span class="text-lg">Click here - to schedule your event</span>
-                  </a>
-            </div>
+            
         </div>
     </ul>
 

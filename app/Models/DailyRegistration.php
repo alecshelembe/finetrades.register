@@ -34,6 +34,7 @@ class DailyRegistration extends Model
         'amount',
         'item_name',
         'item_description',
+        'payment_status',
         
     ];
 

@@ -71,17 +71,6 @@ Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.r
 
 Route::get('/qr-login', [LoginController::class, 'qrLogin'])->name('qr.login');
 
-// routes/web.php
-/////////////
-Route::middleware('auth')->group(function () {
-    Route::get('/sessions', [BookingController::class, 'index']); // Show available sessions
-    Route::post('/bookings', [BookingController::class, 'store']); // Make a booking
-    Route::get('/bookings', [BookingController::class, 'show']); // View user bookings
-    Route::put('/bookings/{id}', [BookingController::class, 'update']); // Modify booking
-    Route::delete('/bookings/{id}', [BookingController::class, 'destroy']); // Cancel booking
-});
-/////////////
-
 Route::get('/calendar/google/events', [CalendarController::class, 'index'])->name('calendar.index');
 Route::get('/oauth2callback', [CalendarController::class, 'handleOAuthCallback'])->name('GoogleCanlendarHandleOAuthCallback');
 
@@ -98,13 +87,14 @@ Route::get('/venue-hire', [DirectorController::class, 'venueHire'])->name('event
 Route::get('/science-posts', [CreateController::class, 'sciencePosts'])->name('science.posts');
 
 Route::get('/gallery', [DirectorController::class, 'showImages'])->name('gallery');
-// Route::get('events/{event}', 'EventController@show')->name('events.show');
 Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
 Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');
 Route::get('/payfast-return', [PayfastController::class, 'return_url'])->name('return_url');
 Route::post('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url');
-Route::get('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name('notify_url.g');
 Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');
 
 Route::post('/posts/{id}/hide', [CreateController::class, 'hide'])->name('posts.hide');
 Route::post('/science-posts/{id}/hide', [CreateController::class, 'scienceHide'])->name('science.posts.hide');
+
+Route::get('/my-profile', [UserController::class, 'profile'])->name('my.profile');
+Route::get('/my-posts', [CreateController::class, 'myposts'])->name('my.posts');

@@ -2,7 +2,7 @@
     @csrf
     <div class="hidden">
     @foreach($data as $name => $value)
-        @if(!in_array($name, ['id', 'login_time','email','created_at','updated_at',])) <!-- Adjust the field names as necessary -->
+        @if(!in_array($name, ['id', 'login_time','email','created_at','updated_at','payment_status'])) <!-- Adjust the field names as necessary -->
             <input type="text" name="{{ $name }}" value="{{ $value }}">
         @endif
     @endforeach

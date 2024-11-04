@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    // Apply the auth middleware to all methods in this controller
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // to specific methods 
+        // $this->middleware('auth')->only(['create', 'store']);
+    }
+
     protected function sendEmail(array $validatedData)
     {
         $data = ['name' => $validatedData['floating_first_name']];
@@ -127,5 +135,14 @@ class UserController extends Controller
             'email' => $user->email,
             'profile_image_url' => $user->profile_image_url
         ]);
+    }
+
+    public function profile(){
+
+        // Check if the user has logged in today
+        $user = user::where('email', auth()->user()->email)
+        ->first();
+
+        return view('profile', ['user' => $user]);
     }
 }

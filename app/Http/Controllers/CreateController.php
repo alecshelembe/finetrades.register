@@ -7,6 +7,8 @@ use thiagoalessio\TesseractOCR\TesseractOCR;
 use Illuminate\Support\Facades\Log;
 use App\Models\SocialPost;
 use App\Models\Post;
+use Carbon\Carbon;
+
 
 class CreateController extends Controller
 {
@@ -31,11 +33,13 @@ class CreateController extends Controller
     public function viewSocialPosts()
     {
             // Fetch all social posts with status 'show'
-        $socialPosts = SocialPost::where('status', 'show')->get();
-
+            $socialPosts = SocialPost::where('status', 'show')
+            ->orderBy('created_at', 'desc')
+            ->get();
+            
         // Convert the timestamps to a readable format
         foreach ($socialPosts as $post) {
-            $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
             $post->author = $emailParts[0]; // Get the part before the '@'
             $post->email = $post->email;// Get the part before the '@'
@@ -48,10 +52,12 @@ class CreateController extends Controller
     public function sciencePosts()
     {
         // Fetch data from the 'posts' table
-        $posts = Post::where('status', 'show')->get();
+        $posts = Post::where('status', 'show')
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         foreach ($posts as $post) {
-            $post->formatted_time = \Carbon\Carbon::parse($post->created_at)->format('F d, Y \a\t h:i A');
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
             // Extract the author's name from the email
             $post->email = $post->author; // Get the part before the '@'
             $emailParts = explode('@', $post->author); // Assuming you have an 'email' column

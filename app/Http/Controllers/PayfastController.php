@@ -22,7 +22,7 @@ class PayfastController extends Controller
         ]);
 
         // Collect all form data from the request
-        $data = $request->except('_token','email','id','login_time','created_at','updated_at',); // Exclude the CSRF token from data
+        $data = $request->except('_token','email','id','login_time','created_at','updated_at','payment_status'); // Exclude the CSRF token from data
         
         // Fetch the registration record
         $registration = DailyRegistration::where('email', $data['email_address'])
@@ -73,15 +73,61 @@ class PayfastController extends Controller
     }
 
     public function return_url() {
-        // return view('payment.return'); 
-        // Handle success case
-        return response()->json(['notify' => 'success'], 200);
-    }
+        // Set PayFast host based on the environment
+        $testingMode = env('PAYFAST_TESTING_MODE', true);
+        $pfHost = $testingMode ? 'sandbox.payfast.co.za' : 'www.payfast.co.za';
+    
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            $referrerHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+    
+            if ($referrerHost === $pfHost) {
+                // Get the email of the currently logged-in user
+                $email = auth()->user()->email;
+    
+                $registration = DailyRegistration::where('email', $email)
+                    ->where('login_time', '>=', Carbon::now()->subDay())
+                    ->first();
+    
+                if ($registration) {
+                    // Update fields
+                    $registration->payment_status = 'Success';
 
+                    session(['payment_status' => $registration->payment_status]);
+
+                    $registration->save();
+    
+                    return response()->json(['notify' => 'success'], 200);
+                } else {
+                    return response()->json(['error' => 'No registration found'], 404);
+                }
+    
+            } else {
+                // Referrer does not match the expected host
+                return response()->json(['error' => 'Invalid referrer'], 403);
+            }
+        } else {
+            // No referrer set, redirect to cancel URL
+            return response()->json(['error' => 'Invalid referrer'], 403);
+            // return redirect()->route('cancel_url');
+        }
+    }
+    
     public function cancel_url() {
-        // Handle cancel case
+        $email = auth()->user()->email;
+    
+        $registration = DailyRegistration::where('email', $email)
+            ->where('login_time', '>=', Carbon::now()->subDay())
+            ->first();
+    
+        if ($registration) {
+            // Update fields
+            $registration->payment_status = 'Pending Cancelled';
+            $registration->save();
+        }
+    
         return response()->json(['cancel' => 'success'], 200);
     }
+    
 
     public function notify_url() {
         // Handle IPN (Instant Payment Notification) from PayFast here
