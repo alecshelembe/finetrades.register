@@ -90,13 +90,15 @@ class PayfastController extends Controller
     
                 if ($registration) {
                     // Update fields
-                    $registration->payment_status = 'Success';
+                    $registration->payment_status = 'Valid';
 
                     session(['payment_status' => $registration->payment_status]);
 
                     $registration->save();
     
-                    return response()->json(['notify' => 'success'], 200);
+                    // return response()->json(['notify' => 'success'], 200);
+                    return redirect()->route('home'); 
+
                 } else {
                     return response()->json(['error' => 'No registration found'], 404);
                 }
@@ -121,17 +123,14 @@ class PayfastController extends Controller
     
         if ($registration) {
             // Update fields
-            $registration->payment_status = 'Pending Cancelled';
+            $registration->payment_status = 'Cancelled';
+
+            session(['payment_status' => $registration->payment_status]);
+
             $registration->save();
         }
     
-        return response()->json(['cancel' => 'success'], 200);
-    }
-    
-
-    public function notify_url() {
-        // Handle IPN (Instant Payment Notification) from PayFast here
-        return response()->json(['status' => 'success'], 200);
+        return redirect()->route('home'); // Redirect to 'home' route with $exists
     }
 
     

@@ -44,9 +44,45 @@ class CreateController extends Controller
             $post->author = $emailParts[0]; // Get the part before the '@'
             $post->email = $post->email;// Get the part before the '@'
         }
+        
 
         // Pass posts to the view
         return view('mobile.home', compact('socialPosts'));
+    }
+
+    public function viewboth(){
+
+    // Fetch all social posts with status 'show'
+    $socialPosts = SocialPost::where('status', 'show')
+    ->orderBy('created_at', 'desc')
+    ->get();
+
+    // Convert the timestamps to a readable format
+    foreach ($socialPosts as $post) {
+    $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+    $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
+    $post->author = $emailParts[0]; // Get the part before the '@'
+    $post->email = $post->email;// Get the part before the '@'
+    }
+
+    // Fetch data from the 'posts' table
+    $posts = Post::where('status', 'show')
+    ->orderBy('created_at', 'desc')
+    ->get();
+
+    foreach ($posts as $post) {
+    $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+    // Extract the author's name from the email
+    $post->email = $post->author; // Get the part before the '@'
+    $emailParts = explode('@', $post->author); // Assuming you have an 'email' column
+    $post->author = $emailParts[0]; // Get the part before the '@'
+    }
+
+        return view('layouts.viewboth', [
+            'posts' => $posts,
+            'socialPosts' => $socialPosts
+        ]);
+        
     }
 
     public function sciencePosts()
@@ -180,6 +216,24 @@ class CreateController extends Controller
     public function create()
     {
         return view('layouts.create');
+    }
+
+    public function myposts(){
+
+    // Fetch all social posts with status 'show'
+        $socialPosts = SocialPost::where('email', auth()->user()->email)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+            // Convert the timestamps to a readable format
+            foreach ($socialPosts as $post) {
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
+            $post->author = $emailParts[0]; // Get the part before the '@'
+            $post->email = $post->email;// Get the part before the '@'
+        }
+            
+        return view('mobile.home', compact('socialPosts'));
     }
 
    

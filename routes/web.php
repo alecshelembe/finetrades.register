@@ -42,9 +42,10 @@ Route::get('/register', [UserController::class, 'create'])->name('users.create')
 Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.create.ref');
 
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
+Route::post('/update-user', [UserController::class, 'profileStore'])->name('profile.store');
 // Route::match(['get', 'post'], '/register-user', [UserController::class, 'register']);
 
-Route::get('/', [CreateController::class, 'viewSocialPosts'])->name('home');
+Route::get('/', [CreateController::class, 'viewboth'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/QrCodeLogin', [LoginController::class, 'showLoginFormQrCode'])->name('login.qrcode');
@@ -97,4 +98,4 @@ Route::post('/posts/{id}/hide', [CreateController::class, 'hide'])->name('posts.
 Route::post('/science-posts/{id}/hide', [CreateController::class, 'scienceHide'])->name('science.posts.hide');
 
 Route::get('/my-profile', [UserController::class, 'profile'])->name('my.profile');
-Route::get('/my-posts', [CreateController::class, 'myposts'])->name('my.posts');
+Route::get('/my-social-posts', [CreateController::class, 'myposts'])->name('my.posts');

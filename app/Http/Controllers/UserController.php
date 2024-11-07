@@ -13,9 +13,11 @@ class UserController extends Controller
     // Apply the auth middleware to all methods in this controller
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         // to specific methods 
         // $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->except(['create', 'store']);
+
     }
 
     protected function sendEmail(array $validatedData)
@@ -67,6 +69,62 @@ class UserController extends Controller
         $email = base64_encode(auth()->user()->email);
         // Redirect with email as a query parameter
         return redirect()->route('users.create', ['email' => $email]);
+    }
+
+    public function profileStore(Request $request){
+        
+        // Validate the request data
+        $validatedData = $request->validate([
+            'floating_email' => 'nullable|email|unique:users,email',
+            'google_location' => 'nullable|string|max:255',
+            'floating_address' => 'nullable|string|max:255',
+            'google_latitude' => 'nullable|string|max:255',
+            'google_longitude' => 'nullable|string|max:255',
+            'google_location_type' => 'nullable|string|max:255',
+            'google_postal_code' => 'nullable|string|max:255',
+            'google_city' => 'nullable|string|max:255',
+            'package_selected' => 'nullable|string|max:255',
+            'web_source' => 'nullable|string|max:255',
+            'location_id' => 'nullable|string|max:255',
+            'floating_first_name' => 'required|string|max:255',
+            'floating_last_name' => 'required|string|max:255',
+            'floating_phone' => 'required|digits:10',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+
+        ]);
+
+        // Handle image upload if provided
+        $imagePath = 'images/default-profile.png'; // Default image path
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $imagePath = 'images/' . $imageName;
+        }
+
+        $user = auth()->user();
+
+        // Update the user with the validated data
+        $user->update([
+            'google_location' => $validatedData['google_location'] ?? '',
+            'google_latitude' => $validatedData['google_latitude'] ?? '',
+            'google_longitude' => $validatedData['google_longitude'] ?? '',
+            'google_location_type' => $validatedData['google_location_type'] ?? '',
+            'google_postal_code' => $validatedData['google_postal_code'] ?? '',
+            'google_city' => $validatedData['google_city'] ?? '',
+            'web_source' => $validatedData['web_source'] ?? '',
+            'location_id' => $validatedData['location_id'] ?? '',
+            'first_name' => $validatedData['floating_first_name'],
+            'last_name' => $validatedData['floating_last_name'],
+            'phone' => $validatedData['floating_phone'],
+            'profile_image_url' => $imagePath,
+        ]);
+
+        // Redirect with a success message and email
+        return redirect()->route('home')->with([
+            'success' => 'User updated successfully!',
+        ]);
+
     }
 
 
@@ -145,4 +203,5 @@ class UserController extends Controller
 
         return view('profile', ['user' => $user]);
     }
+
 }

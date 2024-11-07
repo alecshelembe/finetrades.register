@@ -23,13 +23,18 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           </li>--}}
           <li>
             <!-- Payment Status Banner -->
-            @if(session()->has('payment_status') && session('payment_status') === 'Success')
+            @if(session()->has('payment_status') && session('payment_status') === 'Valid')
                 <div class="bg-green-500 text-center p-2">
-                    Payment Status: {{ session('payment_status') }}
+                    Entrance: {{ session('payment_status') }}
+                </div>
+            @endif
+            @if(session()->has('payment_status') && session('payment_status') === 'Cancelled')
+                <div class="bg-red-500 text-center p-2">
+                    Entrance: {{ session('payment_status') }}
                 </div>
             @endif
             @if (session('success'))
-              <p style="color: green; ">{{ session('success') }}</p>
+              <p class="mx-auto" style="background-coloer:#f5f5f5; color: green;"> {!! session('success') !!}</p>
             @endif
             @if(session('exists'))
               <p class="mx-auto" style="background-coloer:#f5f5f5; color: green;"> {!! session('exists') !!}</p>
@@ -111,7 +116,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
               <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                   <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <li>
-                      <a href="{{ route('create.mobile.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <a href="{{ route('create.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
                         <span class="text-lg">Create a Post</span>
                     </a>
@@ -165,13 +170,13 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <ul class="py-2 text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                    
                   <li>
-                    <a href="{{ route('my.profile') }}" class=" text-sm block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <a href="{{ route('my.profile') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
                         Update my Profile
                     </a>
                 </li>
                 <li>
-                  <a href="{{ route('my.posts') }}" class=" text-sm block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <a href="{{ route('my.posts') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       <!-- Plus icon -->
                      My Posts
                   </a>
