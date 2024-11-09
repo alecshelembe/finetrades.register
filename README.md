@@ -3,6 +3,23 @@ php artisan route:clear
 php artisan view:clear
 php artisan cache:clear
 
+![WhatsApp Image 2024-11-09 at 07 22 21 (2)](https://github.com/user-attachments/assets/016cc158-fa03-4e38-8935-3dbc919fecbc)
+![WhatsApp Image 2024-11-09 at 07 22 21 (1)](https://github.com/user-attachments/assets/e21c493f-d48a-40a1-9460-f2f2488c1564)
+![WhatsApp Image 2024-11-09 at 07 22 21](https://github.com/user-attachments/assets/2ac1e8a5-be94-4928-80da-cb4f6b6f33f6)
+![WhatsApp Image 2024-11-09 at 07 22 20 (3)](https://github.com/user-attachments/assets/13eb7324-7b10-4e5c-a184-7c9cf61671b1)
+![WhatsApp Image 2024-11-09 at 07 22 20 (2)](https://github.com/user-attachments/assets/20a1b15c-905a-4aae-baf2-6844f94aa939)
+![WhatsApp Image 2024-11-09 at 07 22 20 (1)](https://github.com/user-attachments/assets/7178f54f-a11c-4d1f-bd0d-e50d6b4422fb)
+![WhatsApp Image 2024-11-09 at 07 22 20](https://github.com/user-attachments/assets/6f1c64a5-0504-4a64-b5ac-9a237650fef1)
+![WhatsApp Image 2024-11-09 at 07 22 19 (2)](https://github.com/user-attachments/assets/78326f55-9b90-4bb4-a1ea-b6c4ec6062ea)
+![WhatsApp Image 2024-11-09 at 07 22 19 (1)](https://github.com/user-attachments/assets/9ab264fa-7f6b-4eba-b6d0-ceaa2a8f9010)
+![WhatsApp Image 2024-11-09 at 07 22 19](https://github.com/user-attachments/assets/00aa08e6-7c93-4d76-8777-1be9384ae938)
+![WhatsApp Image 2024-11-09 at 07 22 18 (3)](https://github.com/user-attachments/assets/e7129d64-78a9-4d2b-a33c-e15867b55f90)
+![WhatsApp Image 2024-11-09 at 07 22 18 (2)](https://github.com/user-attachments/assets/992d5c00-1d7e-4b5c-9d7b-f8d1a15aec8c)
+![WhatsApp Image 2024-11-09 at 07 22 18 (1)](https://github.com/user-attachments/assets/4aefb638-b8d0-4b2f-80c4-982e24aa2141)
+![WhatsApp Image 2024-11-09 at 07 22 18](https://github.com/user-attachments/assets/7ff0e8df-cbff-4d47-9be8-f59d3c50e706)
+
+
+
 -----------------------------------------------------------------------------
 ## Hi, from the author enjoy a basic form register.
 
