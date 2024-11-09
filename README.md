@@ -7,6 +7,10 @@ php artisan cache:clear
 -----------------------------------------------------------------------------
 ## Hi, from the author, Always give back
 
+CLICK here for images of project
+
+<a href="https://alecshelembe.github.io/site/S/register/"> Screenshots of web app</a>
+
 1. create your env file and connect to your mysql database 
 2. migrate your database 
 3. run db seed 
