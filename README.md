@@ -10,11 +10,6 @@ php artisan cache:clear
 CLICK here for images of project
 
 <h1><a href="https://alecshelembe.github.io/site/S/register/"> Screenshots of web app</a></h1>
-![WhatsApp Image 2024-11-09 at 09 29 02 (5)](https://github.com/user-attachments/assets/90d1ee7c-3a96-4311-89ce-fffcd72e26a0)
-![WhatsApp Image 2024-11-09 at 09 29 02](https://github.com/user-attachments/assets/11859d4d-e946-44cc-9965-102a2cfecbff)
-![WhatsApp Image 2024-11-09 at 09 30 35](https://github.com/user-attachments/assets/72eaefee-850b-4904-8db3-e7b73ca60870)
-
-![WhatsApp Image 2024-11-09 at 09 29 02 (4)](https://github.com/user-attachments/assets/7547a4bb-1c1a-4e24-8c47-d6ed8759fbc7)
 
 1. create your env file and connect to your mysql database
 3. migrate your database 
