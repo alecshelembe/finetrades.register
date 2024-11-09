@@ -9,7 +9,7 @@ php artisan cache:clear
 
 CLICK here for images of project
 
-<h1><a href="https://alecshelembe.github.io/site/S/register/"> Screenshots of web app</a><h1>
+<h1><a href="https://alecshelembe.github.io/site/S/register/"> Screenshots of web app</a></h1>
 
 1. create your env file and connect to your mysql database 
 2. migrate your database 
