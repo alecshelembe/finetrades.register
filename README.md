@@ -1,4 +1,3 @@
-![WhatsApp Image 2024-11-09 at 09 30 35](https://github.com/user-attachments/assets/5d76fe5f-915e-49b4-b80b-0e1391f13328)php artisan config:clear
 php artisan route:clear
 php artisan view:clear
 php artisan cache:clear
