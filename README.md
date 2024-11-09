@@ -14,37 +14,23 @@ php artisan cache:clear
 -----------------------------------------------------------------------------
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<style>
-        .image-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px; /* Optional: Adjust spacing between images */
-        }
-        .image-row img {
-            max-width: 100px; /* Set desired width */
-            height: auto;
-            border-radius: 8px; /* Optional: Add rounded corners */
-        }
-    </style>
     
-<div class="image-row">
-        <img src="https://github.com/user-attachments/assets/016cc158-fa03-4e38-8935-3dbc919fecbc" alt="Image 1">
-        <img src="https://github.com/user-attachments/assets/e21c493f-d48a-40a1-9460-f2f2488c1564" alt="Image 2">
-        <img src="https://github.com/user-attachments/assets/2ac1e8a5-be94-4928-80da-cb4f6b6f33f6" alt="Image 3">
-        <img src="https://github.com/user-attachments/assets/13eb7324-7b10-4e5c-a184-7c9cf61671b1" alt="Image 4">
-        <img src="https://github.com/user-attachments/assets/20a1b15c-905a-4aae-baf2-6844f94aa939" alt="Image 5">
-        <img src="https://github.com/user-attachments/assets/7178f54f-a11c-4d1f-bd0d-e50d6b4422fb" alt="Image 6">
-        <img src="https://github.com/user-attachments/assets/6f1c64a5-0504-4a64-b5ac-9a237650fef1" alt="Image 7">
-        <img src="https://github.com/user-attachments/assets/78326f55-9b90-4bb4-a1ea-b6c4ec6062ea" alt="Image 8">
-        <img src="https://github.com/user-attachments/assets/9ab264fa-7f6b-4eba-b6d0-ceaa2a8f9010" alt="Image 9">
-        <img src="https://github.com/user-attachments/assets/00aa08e6-7c93-4d76-8777-1be9384ae938" alt="Image 10">
-        <img src="https://github.com/user-attachments/assets/e7129d64-78a9-4d2b-a33c-e15867b55f90" alt="Image 11">
-        <img src="https://github.com/user-attachments/assets/992d5c00-1d7e-4b5c-9d7b-f8d1a15aec8c" alt="Image 12">
-        <img src="https://github.com/user-attachments/assets/4aefb638-b8d0-4b2f-80c4-982e24aa2141" alt="Image 13">
-        <img src="https://github.com/user-attachments/assets/7ff0e8df-cbff-4d47-9be8-f59d3c50e706" alt="Image 14">
-    </div>
-<p align="center">
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <img src="https://github.com/user-attachments/assets/016cc158-fa03-4e38-8935-3dbc919fecbc" alt="Image 1" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/e21c493f-d48a-40a1-9460-f2f2488c1564" alt="Image 2" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/2ac1e8a5-be94-4928-80da-cb4f6b6f33f6" alt="Image 3" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/13eb7324-7b10-4e5c-a184-7c9cf61671b1" alt="Image 4" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/20a1b15c-905a-4aae-baf2-6844f94aa939" alt="Image 5" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/7178f54f-a11c-4d1f-bd0d-e50d6b4422fb" alt="Image 6" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/6f1c64a5-0504-4a64-b5ac-9a237650fef1" alt="Image 7" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/78326f55-9b90-4bb4-a1ea-b6c4ec6062ea" alt="Image 8" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/9ab264fa-7f6b-4eba-b6d0-ceaa2a8f9010" alt="Image 9" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/00aa08e6-7c93-4d76-8777-1be9384ae938" alt="Image 10" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/e7129d64-78a9-4d2b-a33c-e15867b55f90" alt="Image 11" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/992d5c00-1d7e-4b5c-9d7b-f8d1a15aec8c" alt="Image 12" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/4aefb638-b8d0-4b2f-80c4-982e24aa2141" alt="Image 13" style="max-width: 100px; height: auto; border-radius: 8px;">
+        <img src="https://github.com/user-attachments/assets/7ff0e8df-cbff-4d47-9be8-f59d3c50e706" alt="Image 14" style="max-width: 100px; height: auto; border-radius: 8px;">
+    </div><p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
