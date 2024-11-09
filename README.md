@@ -15,20 +15,6 @@ php artisan cache:clear
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<div>
-    <style>
-      .image-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px; /* Optional: Adjust spacing between images */
-        }
-        .image-row img {
-            max-width: 100px; /* Set desired width */
-            height: auto;
-            border-radius: 8px; /* Optional: Add rounded corners */
-        }
-  </style> 
-    <div class="image-row">
         ![WhatsApp Image 2024-11-09 at 07 22 21 (2)](https://github.com/user-attachments/assets/016cc158-fa03-4e38-8935-3dbc919fecbc)
         ![WhatsApp Image 2024-11-09 at 07 22 21 (1)](https://github.com/user-attachments/assets/e21c493f-d48a-40a1-9460-f2f2488c1564)
         ![WhatsApp Image 2024-11-09 at 07 22 21](https://github.com/user-attachments/assets/2ac1e8a5-be94-4928-80da-cb4f6b6f33f6)
@@ -43,8 +29,6 @@ php artisan cache:clear
         ![WhatsApp Image 2024-11-09 at 07 22 18 (2)](https://github.com/user-attachments/assets/992d5c00-1d7e-4b5c-9d7b-f8d1a15aec8c)
         ![WhatsApp Image 2024-11-09 at 07 22 18 (1)](https://github.com/user-attachments/assets/4aefb638-b8d0-4b2f-80c4-982e24aa2141)
         ![WhatsApp Image 2024-11-09 at 07 22 18](https://github.com/user-attachments/assets/7ff0e8df-cbff-4d47-9be8-f59d3c50e706)
-    </div>
-</div>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
