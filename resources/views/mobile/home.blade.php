@@ -39,10 +39,17 @@
                     <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
 
                     @if (auth()->user()->email === $post->email)
-                        <form action="{{ route('posts.hide', $post->id) }}" method="POST">
-                            @csrf
-                            <button class="px-2 text-xs py-2 "><i class="fa-regular fa-eye"></i> Hide my post</button>
-                        </form>
+                        @if ($post->status === 'show')
+                            <form action="{{ route('posts.hide', $post->id) }}" method="POST">
+                                @csrf
+                                <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye"></i> Hide my post</button>
+                            </form>
+                        @else
+                            <form action="{{ route('posts.show', $post->id) }}" method="POST">
+                                @csrf
+                                <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye"></i> Show my post</button>
+                            </form>
+                        @endif
                     @endif
                 </div>
             </div>

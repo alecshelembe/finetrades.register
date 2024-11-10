@@ -95,6 +95,7 @@ Route::post('/payfast-notify', [PayfastITNController::class, 'handleITN'])->name
 Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->name('payment.process');
 
 Route::post('/posts/{id}/hide', [CreateController::class, 'hide'])->name('posts.hide');
+Route::post('/posts/{id}/show', [CreateController::class, 'show'])->name('posts.show');
 Route::post('/science-posts/{id}/hide', [CreateController::class, 'scienceHide'])->name('science.posts.hide');
 
 Route::get('/my-profile', [UserController::class, 'profile'])->name('my.profile');

@@ -143,6 +143,25 @@ class CreateController extends Controller
         return redirect()->back()->with('error', 'You are not authorized to hide this post.');
     }
 
+    public function show($id)
+    {
+        // Find the post by ID
+        $post = SocialPost::findOrFail($id);
+        
+        // Check if the logged-in user's email matches the post's email
+        if (auth()->user()->email === $post->email) {
+            // Update the status to 'hide' (or however you want to handle hiding)
+            $post->status = 'show';
+            $post->save();
+            
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Post is now public .');
+        }
+
+        // Redirect back with an error message if the user doesn't match
+        return redirect()->back()->with('error', 'You are not authorized to show this post.');
+    }
+
 
     public function saveSocialPost(Request $request)
     {
