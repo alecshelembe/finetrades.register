@@ -4,6 +4,8 @@ php artisan qrcode:generate-daily
 php artisan schedule:list
 https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migration-to-new-installation-methods.html
 sudo chown -R www-data:www-data /var/www/html/wordpress
+git pull origin main --rebase
+
 
 # View the error log
 sudo less /var/log/apache2/demo-error.log

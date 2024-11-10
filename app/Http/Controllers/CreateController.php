@@ -237,9 +237,30 @@ class CreateController extends Controller
         return view('layouts.create');
     }
 
+        public function viewPublicUserPosts($email)
+    {
+        // Fetch all social posts for the specified user with status 'show'
+        $socialPosts = SocialPost::where('email', $email)
+            ->where('status', 'show') // Only fetch posts with status 'show'
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Convert timestamps to readable format and extract author name
+        foreach ($socialPosts as $post) {
+            $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
+            $emailParts = explode('@', $post->email);
+            $post->author = $emailParts[0]; // Get the part before the '@'
+        }
+
+        // Return a view that shows the public posts
+        return view('mobile.home', compact('socialPosts'));
+    }
+
+
+
     public function myposts(){
 
-    // Fetch all social posts with status 'show'
+    // Fetch all social posts 
         $socialPosts = SocialPost::where('email', auth()->user()->email)
         ->orderBy('created_at', 'desc')
         ->get();

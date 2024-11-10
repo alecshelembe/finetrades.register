@@ -100,3 +100,6 @@ Route::post('/science-posts/{id}/hide', [CreateController::class, 'scienceHide']
 
 Route::get('/my-profile', [UserController::class, 'profile'])->name('my.profile');
 Route::get('/my-social-posts', [CreateController::class, 'myposts'])->name('my.posts');
+Route::get('/public-user-posts/{email}', [CreateController::class, 'viewPublicUserPosts'])->name('public.user.posts');
+
+
