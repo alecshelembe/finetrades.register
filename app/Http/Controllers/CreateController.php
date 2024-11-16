@@ -79,8 +79,8 @@ class CreateController extends Controller
     }
 
         return view('layouts.viewboth', [
-            'posts' => $posts,
-            'socialPosts' => $socialPosts
+            'socialPosts' => $socialPosts,
+            'posts' => $posts
         ]);
         
     }
