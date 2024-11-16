@@ -3,39 +3,27 @@
 @section('content')
     @include('layouts.navbar')
 
-    {{-- Toggle View Button --}}
-        <div class="flex justify-end">
-            <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg">
-                <i class="fa-regular fa-eye"></i> Toggle View
-            </button>
-        </div>
-
     {{-- Posts Section --}}
     @if ($posts->isEmpty() && $socialPosts->isEmpty())
         <div class="flex flex-col justify-between p-4 leading-normal">
             <h5>No Posts here..</h5>
         </div>
     @else
-        {{-- Combined and Alternated Grid Layout for Posts --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="postContainer">
+        {{-- Combined Grid Layout for Posts --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {{-- Merge $posts and $socialPosts --}}
             @php
                 $combinedPosts = collect();
-                $maxCount = max(count($posts), count($socialPosts));
 
-                // Alternating between posts and social posts
-                for ($i = 0; $i < $maxCount; $i++) {
-                    if (isset($posts[$i])) {
-                        $combinedPosts->push($posts[$i]);
-                    }
-                    if (isset($socialPosts[$i])) {
-                        $combinedPosts->push($socialPosts[$i]);
-                    }
-                }
+                // Merge $posts and $socialPosts into one collection
+                $combinedPosts = $combinedPosts->merge($posts)->merge($socialPosts);
+
+                // Sort the combined posts by created_at in descending order
+                $combinedPosts = $combinedPosts->sortByDesc('created_at');
             @endphp
 
-            {{-- Loop through merged and alternated posts --}}
-            @foreach ($combinedPosts as $index => $post)
+            {{-- Loop through merged and sorted posts --}}
+            @foreach ($combinedPosts as $post)
                 @php
                     $isSocialPost = isset($post->images); // Check if it's a social post
                 @endphp
@@ -125,7 +113,7 @@
                             @if ($post->status === 'show')
                                 <form action="{{ route('posts.hide', $post->id) }}" method="POST">
                                     @csrf
-                                    <button class="px-2 text-xs py-2">
+                                    <button class="px-2 text-sm py-2">
                                         <i class="fa-regular fa-eye-slash"></i> Hide my post
                                     </button>
                                 </form>
@@ -142,24 +130,6 @@
                 </div>
             @endforeach
         </div>
-
     @endif
 
-    <script>
-        const toggleButton = document.getElementById('toggleView');
-        const postContainer = document.getElementById('postContainer');
-
-        let isGrid = true;
-
-        toggleButton.addEventListener('click', function() {
-            if (isGrid) {
-                postContainer.classList.remove('grid', 'grid-cols-2');
-                postContainer.classList.add('flex', 'flex-col');
-            } else {
-                postContainer.classList.remove('flex', 'flex-col');
-                postContainer.classList.add('grid', 'grid-cols-2');
-            }
-            isGrid = !isGrid;
-        });
-    </script>
 @endsection
