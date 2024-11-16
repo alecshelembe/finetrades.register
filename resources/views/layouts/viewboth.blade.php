@@ -12,7 +12,7 @@
 </style>
 
 @if($posts->isEmpty() && $socialPosts->isEmpty())
-    <div class="flex flex-col justify-between p-4 leading-normal">
+    <div class="flex flex-col justify-between leading-normal">
         <h5>No Posts here..</h5>
     </div>
 @else
@@ -21,9 +21,9 @@
         $allPosts = $posts->merge($socialPosts)->sortByDesc('created_at');
     @endphp
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         @foreach ($allPosts as $post)
-            <div class="bg-white p-4 rounded-lg shadow">
+            <div class="bg-white p-2 rounded-lg shadow">
                 {{-- Check if the post is a science post --}}
                 @if (isset($post->title))
                     <h3 class="text-xl font-bold mb-2">{{ $post->title }}</h3>
