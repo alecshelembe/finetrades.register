@@ -37,15 +37,21 @@
                     <p class="text-xs text-gray-500">Posted by: {{ $post->author }}</p>
                     {{-- <p class="text-xs text-gray-500">{{ $post->created_at }}</p> --}}
                     <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
+                    <div class="">
+                        <a href="{{ route('social.view.post', ['id' => $post->id]) }}" 
+                        class=" p-2 text-sm rounded-full shadow-lg">
+                            View
+                        </a>
+                    </div>
 
                     @if (auth()->user()->email === $post->email)
                         @if ($post->status === 'show')
-                            <form action="{{ route('posts.hide', $post->id) }}" method="POST">
+                            <form action="{{ route('posts.hide', $post->id) }}" class="text-sm" method="POST">
                                 @csrf
-                                <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye"></i> Hide my post</button>
+                                <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye-slash"></i> Hide my post</button>
                             </form>
                         @else
-                            <form action="{{ route('posts.show', $post->id) }}" method="POST">
+                            <form action="{{ route('posts.show', $post->id) }}" class="text-sm" method="POST">
                                 @csrf
                                 <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye"></i> Show my post</button>
                             </form>

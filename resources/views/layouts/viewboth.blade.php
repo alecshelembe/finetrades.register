@@ -106,6 +106,15 @@
                             <p class="text-sm text-gray-700">{{ $post->description }}</p>
                             <p class="text-xs text-gray-500">Posted by: {{ $post->author }}</p>
                             <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
+                            <div class="text-right">
+                                <p>
+                                    <a href="https://wa.me/?text={{ urlencode(route('social.view.post', ['id' => $post->id])) }}" 
+                                        target="_blank" 
+                                        class="p-2 text-sm rounded-full shadow-lg">
+                                        <i class="fa-brands fa-whatsapp"></i> share
+                                    </a>
+                                </p>
+                                </div>                        
                         </div>
 
                         {{-- Show/Hide Post Option for the User --}}
@@ -120,11 +129,15 @@
                             @else
                                 <form action="{{ route('posts.show', $post->id) }}" method="POST">
                                     @csrf
-                                    <button class="px-2 text-xs py-2 text-blue-800">
+                                    <button class="px-2 text-sm py-2 text-blue-800">
                                         <i class="fa-regular fa-eye"></i> Show my post
                                     </button>
                                 </form>
                             @endif
+                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" 
+                            class="p-2 text-sm rounded-full shadow-lg">
+                                View
+                            </a>
                         @endif
                     @endif
                 </div>

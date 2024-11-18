@@ -51,19 +51,19 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     <li>
                       <a href="{{ route('social.view.posts') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        <span class="text-lg">Media Posts</span>
+                        <span class="">Media Posts</span>
                       </a>
                     </li>
                     <li>
                       <a href="{{ route('science.posts') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        <span class="text-lg">Science Posts</span>
+                        <span class="">Science Posts</span>
                       </a>
                     </li>
                     <li>
                       <a href="{{ route('gallery') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                      <span class="text-lg ">Gallery</span>
+                      <span class=" ">Gallery</span>
                     </a>
                   </li>  
                   </ul>
@@ -82,14 +82,14 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                       {{-- <li>
                         <a href="{{ route('GoogleCanlendarHandleOAuthCallback') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
-                        <span class="text-lg ">Google Calender Events</span>
+                        <span class=" ">Google Calender Events</span>
                       </a>
                     </li> --}}
                     
                   <li>
                     <a href="{{ route('events.rockclimbing') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       <!-- Plus icon -->
-                    <span class="text-lg ">Rock Climbing</span>
+                    <span class=" ">Rock Climbing</span>
                   </a>
                 </li>
                 
@@ -98,7 +98,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                   {{-- <li>
                       <a href="{{ route('events.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                      <span class="text-lg ">Create</span>
+                      <span class=" ">Create</span>
                     </a>
                   </li> --}}
                   </ul>
@@ -118,7 +118,7 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                     <li>
                       <a href="{{ route('create.post') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                         <!-- Plus icon -->
-                        <span class="text-lg">Create a Post</span>
+                        <span class="">Create a Post</span>
                     </a>
                     </li>
                   </ul>
@@ -138,11 +138,11 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <a href="{{ route('events.showAll') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                     <!-- Plus icon -->
-                  <span class="text-lg "> Events</span>
+                  <span class=" "> Events</span>
                 </a>
               </li>  
                 <li>
-                  <a href="{{ route('login.qrcode') }}" class=" text-lg block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <a href="{{ route('login.qrcode') }}" class="  block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                     <!-- Plus icon -->
                     Daily Entry
                   </a>
@@ -150,12 +150,12 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <a href="{{ route('events.venuehire') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                     <!-- Plus icon -->
-                    <span class="text-lg ">Venue Hire</span>
+                    <span class=" ">Venue Hire</span>
                   </a>
                 </li>
                 </ul>
                 <div class="py-1">
-                  {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a> --}}
+                  {{-- <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a> --}}
                 </div>
             </div>
         </li>
@@ -188,13 +188,13 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                   </a>
               </li>
                   <li>
-                      <a href="{{ route('users.create.ref') }}" class=" text-lg block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <a href="{{ route('users.create.ref') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
                           Create Ref
                       </a>
                   </li>
                     <li>
-                      <a href="{{ route('users.logout') }}" class="text-lg block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                      <a href="{{ route('users.logout') }}" class=" block py-2 px-3 text-gray-900 rounded hover:bg-blue-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                           <!-- Plus icon -->
                           <i class="fa-solid fa-right-from-bracket"></i> Sign Out
                       </a>

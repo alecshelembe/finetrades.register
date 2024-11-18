@@ -66,6 +66,8 @@ Route::post('/create-social-post', [CreateController::class, 'saveSocialPost'])-
 
 Route::get('/view-social-posts', [CreateController::class, 'viewSocialPosts'])->name('social.view.posts');
 
+Route::get('/view-social-post/{id}', [CreateController::class, 'viewSocialPost'])->name('social.view.post');
+
 Route::get('/create-mobile-post', [CreateController::class, 'showMobilePostForm'])->name('create.mobile.post');
 
 Route::post('/create-post', [CreateController::class, 'savePost'])->name('save.raw.post');

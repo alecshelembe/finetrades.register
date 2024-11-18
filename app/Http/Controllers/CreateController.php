@@ -29,6 +29,25 @@ class CreateController extends Controller
     {
         return view('mobile.create');
     }
+
+        public function viewSocialPost($id) 
+    {
+        // Fetch the social post by ID with status 'show'
+        $socialPost = SocialPost::where('id', $id)
+            ->where('status', 'show')
+            ->firstOrFail();
+
+        // Convert the timestamp to a readable format
+        $socialPost->formatted_time = Carbon::parse($socialPost->created_at)->diffForHumans();
+
+        // Format the email to extract the author
+        $emailParts = explode('@', $socialPost->email); // Assuming you have an 'email' column
+        $socialPost->author = $emailParts[0]; // Get the part before the '@'
+        $socialPost->email = $socialPost->email;
+
+        // Pass the post to the view
+        return view('mobile.post', compact('socialPost'));
+    }
     
     public function viewSocialPosts()
     {
@@ -255,8 +274,6 @@ class CreateController extends Controller
         // Return a view that shows the public posts
         return view('mobile.home', compact('socialPosts'));
     }
-
-
 
     public function myposts(){
 
