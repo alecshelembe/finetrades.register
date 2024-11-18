@@ -33,19 +33,18 @@
             <p class="text-sm text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by: {{ $socialPost->author }}</p>
             <p class="text-xs text-gray-500">{{ $socialPost->formatted_time }}</p>
-            
 
             {{-- Toggle post visibility if user is the author --}}
             @if (auth()->user()->email === $socialPost->email)
                 @if ($socialPost->status === 'show')
                     <form action="{{ route('posts.hide', $socialPost->id) }}" method="POST">
                         @csrf
-                        <button class="px-2 text-sm py-2"><i class="fa-regular fa-eye-slash"></i> Hide my post</button>
+                        <button class=" rounded-full shadow-lg px-2 text-sm py-2"><i class="fa-regular fa-eye-slash"></i> Hide my post</button>
                     </form>
                 @else
                     <form action="{{ route('posts.show', $socialPost->id) }}" method="POST">
                         @csrf
-                        <button class="px-2 text-sm py-2"><i class="fa-regular fa-eye"></i> Show my post</button>
+                        <button class="rounded-full shadow-lg px-2 text-sm py-2"><i class="fa-regular fa-eye"></i> Show my post</button>
                     </form>
                 @endif
                 <div class="text-right">
@@ -55,13 +54,45 @@
                         <i class="fa-brands fa-whatsapp"></i> Share
                     </a>
                 </div>
-                <form action="#" method="POST">
-                    @csrf
-                    <button class="p-2 text-sm rounded-full shadow-lg">
-                            <i class="fa-regular fa-comment"></i> Leave a comment
-                    </button>
-                </form>
+
             @endif
+        </div>
+
+        {{-- Comments Section --}}
+        <div class="mt-4">
+            <h3 class=" text-sm ">Comments:</h3>
+
+            {{-- Check if comments are not null and not empty --}}
+            @if ($socialPost->comments && count($socialPost->comments) > 0)
+                @foreach ($socialPost->comments as $comment)
+                <div>
+                    {{-- Extract the author from the email part before '@' --}}
+                    @php
+                        $emailParts = explode('@', $comment['author']);
+                        $author = $emailParts[0];  // Get the part before the '@'
+                    @endphp
+
+                    <p><strong>{{ $author }}</strong> {{ $comment['content'] }}</p>
+                    <p class="text-xs text-gray-500">
+                        Posted {{ \Carbon\Carbon::parse($comment['created_at'])->diffForHumans() }}
+                    </p>
+                </div>
+                @endforeach
+            @else
+                <p>Be the first to leave a comment.</p>
+            @endif
+
+            {{-- Comment form --}}
+            <form action="{{ route('comments.store', $socialPost->id) }}" method="POST" class="mt-4">
+                @csrf
+                <div class="mb-2">
+                    <textarea name="content" placeholder="Your comment" class="w-full p-2 border rounded" required></textarea>
+                </div>
+                @error('content')
+                    <p class="text-red-600  mt-1">{{ $message }}</p>
+                @enderror
+                <button type="submit" class="p-2 text-sm rounded-full shadow-lg">  <i class="fa-regular fa-comment"></i> Post my comment</button>
+            </form>
         </div>
     </div>
 </div>

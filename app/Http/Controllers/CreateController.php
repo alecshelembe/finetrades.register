@@ -30,11 +30,10 @@ class CreateController extends Controller
         return view('mobile.create');
     }
 
-        public function viewSocialPost($id) 
+    public function viewSocialPost($id)
     {
         // Fetch the social post by ID with status 'show'
         $socialPost = SocialPost::where('id', $id)
-            ->where('status', 'show')
             ->firstOrFail();
 
         // Convert the timestamp to a readable format
@@ -45,9 +44,13 @@ class CreateController extends Controller
         $socialPost->author = $emailParts[0]; // Get the part before the '@'
         $socialPost->email = $socialPost->email;
 
-        // Pass the post to the view
-        return view('mobile.post', compact('socialPost'));
+        // Get the comments (assuming 'comments' is a JSON field in the 'social_posts' table)
+        $comments = $socialPost->comments ?? []; // If there are no comments, use an empty array
+
+        // Pass the post and comments to the view
+        return view('mobile.post', compact('socialPost', 'comments'));
     }
+
     
     public function viewSocialPosts()
     {
@@ -291,6 +294,32 @@ class CreateController extends Controller
         }
             
         return view('mobile.home', compact('socialPosts'));
+    }
+
+    public function storeComment(Request $request, $postId)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500',
+        ]);
+        // echo"hello world";
+        // exit();
+
+        $post = SocialPost::findOrFail($postId);
+
+        // Get existing comments or initialize an empty array
+        $comments = $post->comments ?? [];
+
+        // Add the new comment to the array
+        $comments[] = [
+            'author' => auth()->user()->email,  // Automatically use the logged-in user's email
+            'content' => $request->content,
+            'created_at' => now(),
+        ];
+
+        // Save the updated comments to the post
+        $post->update(['comments' => $comments]);
+
+        return back()->with('success', 'Comment added successfully!');
     }
 
    

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
@@ -18,6 +20,13 @@ class LoginController extends Controller
         $this->middleware('auth')->only(['home']);
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        $intendedUrl = session()->get('url.intended', '/');
+        \Log::info('Intended URL: ' . $intendedUrl); // Log the URL for debugging
+        return redirect($intendedUrl);
+    }
+    
     public function showLoginFormQrCode()
     {
         // Get today's QR code
@@ -41,6 +50,7 @@ class LoginController extends Controller
     
     public function login(Request $request)
     {
+
         if ($request->has('code')) {
             // The request contains the 'code' field
             $request->validate([

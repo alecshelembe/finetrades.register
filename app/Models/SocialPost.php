@@ -10,10 +10,11 @@ class SocialPost extends Model
     use HasFactory;
 
     // Allow mass assignment for these fields
-    protected $fillable = ['description', 'images', 'email','status'];
+    protected $fillable = ['description', 'images', 'email','status','comments'];
 
     // Cast the 'images' field to an array
     protected $casts = [
         'images' => 'array',
+        'comments' => 'array'
     ];
 }

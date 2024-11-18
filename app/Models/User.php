@@ -34,6 +34,7 @@ class User extends Authenticatable
         'location_id',
         'package_selected',
         'ref',
+        'position',
     ];
 
     /**

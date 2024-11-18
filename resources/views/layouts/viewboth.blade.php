@@ -114,7 +114,7 @@
                                         <i class="fa-brands fa-whatsapp"></i> share
                                     </a>
                                 </p>
-                                </div>                        
+                            </div>                        
                         </div>
 
                         {{-- Show/Hide Post Option for the User --}}
@@ -134,11 +134,11 @@
                                     </button>
                                 </form>
                             @endif
-                            <a href="{{ route('social.view.post', ['id' => $post->id]) }}" 
-                            class="p-2 text-sm rounded-full shadow-lg">
-                                View
-                            </a>
                         @endif
+                        <a href="{{ route('social.view.post', ['id' => $post->id]) }}" 
+                        class="p-2 text-sm rounded-full shadow-lg">
+                            View
+                        </a>
                     @endif
                 </div>
             @endforeach

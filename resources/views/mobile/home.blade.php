@@ -46,12 +46,12 @@
 
                     @if (auth()->user()->email === $post->email)
                         @if ($post->status === 'show')
-                            <form action="{{ route('posts.hide', $post->id) }}" class="text-sm" method="POST">
+                            <form action="{{ route('posts.hide', $post->id) }}" class=" rounded-full shadow-lg text-sm" method="POST">
                                 @csrf
                                 <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye-slash"></i> Hide my post</button>
                             </form>
                         @else
-                            <form action="{{ route('posts.show', $post->id) }}" class="text-sm" method="POST">
+                            <form action="{{ route('posts.show', $post->id) }}" class="rounded-full shadow-lg text-sm" method="POST">
                                 @csrf
                                 <button class="px-2 text-xs py-2"><i class="fa-regular fa-eye"></i> Show my post</button>
                             </form>
