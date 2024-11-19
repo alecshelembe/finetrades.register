@@ -11,6 +11,11 @@ class DirectorController extends Controller
     {
         return view('layouts.events.rockclimbing');
     }
+
+    public function generate()
+    {
+        return view('layouts.openai.test');
+    }
     
     public function venueHire()
     {

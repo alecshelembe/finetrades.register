@@ -20,12 +20,6 @@ class LoginController extends Controller
         $this->middleware('auth')->only(['home']);
     }
 
-    protected function authenticated(Request $request, $user)
-    {
-        $intendedUrl = session()->get('url.intended', '/');
-        \Log::info('Intended URL: ' . $intendedUrl); // Log the URL for debugging
-        return redirect($intendedUrl);
-    }
     
     public function showLoginFormQrCode()
     {
