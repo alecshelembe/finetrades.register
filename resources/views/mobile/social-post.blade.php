@@ -30,7 +30,7 @@
 
         {{-- Display post description and email --}}
         <div class="mt-4">
-            <p class="text-sm text-gray-700">{{ $socialPost->description }}</p>
+            <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>
             <p class="text-xs text-gray-500">{{ $socialPost->formatted_time }}</p>
 

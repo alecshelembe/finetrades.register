@@ -102,6 +102,13 @@
                             <p>By: {{ $post->author }}</p>
                             <p>{{ $post->formatted_time }}</p>
                         </div>
+                        <div class="text-right">
+                            <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $post->id])) }}" 
+                                target="_blank" 
+                                class="p-2 text-sm rounded-full shadow-lg">
+                                <i class="fa-brands fa-whatsapp"></i> Share
+                            </a>
+                        </div>
 
                         {{-- Hide Post Option for the User --}}
                         @if (auth()->user()->email === $post->email)

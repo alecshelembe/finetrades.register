@@ -3,14 +3,14 @@
 @include('layouts.navbar')
 
 @section('content')
-<p class="mb-3 mt-2 text-2xl text-gray-500 dark:text-gray-400">
+<p class="mb-3 mt-2 text-2xl">
     Sci-Bono Discovery Centre, Southern Africa’s largest and most visited science centre has also become one of its most sought after venues and destination of choice for unique corporate launches, events and conferences.
 </p>
 <h1 class="text-2xl my-4 font-bold dark:text-white">CONFERENCES, BANQUETES AND COCKTAIL PARTIES</h1>
-<p class="mb-3 text-gray-500 dark:text-gray-400">Situated in the arts and culture precinct of Newtown in one of Joburg’s historic buildings (originally intended as a power station), the centre has the capacity to host conferences of up to 500 people, banquets of up to 600 people and cocktail parties  for up to 1 000.
+<p class="mb-3">Situated in the arts and culture precinct of Newtown in one of Joburg’s historic buildings (originally intended as a power station), the centre has the capacity to host conferences of up to 500 people, banquets of up to 600 people and cocktail parties  for up to 1 000.
 Ample and secure, parking is available at the venue itself but the Gautrain Station and bus stops are also nearby.</p>
 <h1 class="text-2xl my-4 font-bold dark:text-white">TEAM BUILDING</h1>
-<p class="mb-3 text-gray-500 dark:text-gray-400">
+<p class="mb-3">
     Our exciting team building program  offers the client both a full day and a half day option, with lunch. Team skill development activities such as Problem Solving (Puzzles - T or Tree, Handcuffs, Pack-A-Box, Nice Die), Communication (Me-Games/ Science of Soccer), Creative Thinking (Me-Games/ Science of Soccer), Teamwork & Delivering Under Pressure (Treasure Hunt) and Creative Thinking (Africa Map/ Me-Games) help to develop  attention to detail; logical Thinking; solution-focused deliverables; accountability & Responsibility; work-ethic; taking Initiative; working under pressure; people skills: confidence, relationships building and negotiation skills.
     All our programmes can be tailor made to suit the clients requirements and are guaranteed to energise and motivate
     your Team.
