@@ -5,34 +5,3 @@ php artisan schedule:list
 https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migration-to-new-installation-methods.html
 sudo chown -R www-data:www-data /var/www/html/wordpress
 git pull origin main --rebase
-
-
-# View the error log
-sudo less /var/log/apache2/demo-error.log
-
-# View the access log
-sudo less /var/log/apache2/demo-access.log
-
-
-# Monitor the error log
-sudo tail -f /var/log/apache2/demo-error.log
-
-# Monitor the access log
-sudo tail -f /var/log/apache2/demo-access.log
-
-
- // Get all the data from the request
-    $data = $request->all();
-
-    // Convert the data to JSON format
-    $jsonData = json_encode($data, JSON_PRETTY_PRINT);
-
-    // Specify the file path (change filename as needed)
-    $filePath = 'itn_data_' . date('Ymd_His') . '.json'; // Creates a unique filename based on timestamp
-
-    // Save the JSON data to a file
-    if (Storage::put($filePath, $jsonData)) {
-        return response()->json(['message' => "Data successfully saved to storage/$filePath"], 200);
-    } else {
-        return response()->json(['error' => "Error writing to file."], 500);
-    }
