@@ -303,7 +303,7 @@ class CreateController extends Controller
         ->get();
 
             // Convert the timestamps to a readable format
-            foreach ($socialPosts as $post) {
+        foreach ($socialPosts as $post) {
             $post->formatted_time = Carbon::parse($post->created_at)->diffForHumans();
             $emailParts = explode('@', $post->email); // Assuming you have an 'email' column
             $post->author = $emailParts[0]; // Get the part before the '@'
@@ -311,6 +311,42 @@ class CreateController extends Controller
         }
             
         return view('mobile.home', compact('socialPosts'));
+    }
+    
+    public function clearComments(Request $request, $postId)
+    {
+        // Validate comment_id is present and an integer
+        $request->validate(['comment_id' => 'required|integer']);
+
+        // Find the post
+        $post = SocialPost::findOrFail($postId);
+
+        // Get the commentId from the request
+        $commentId = (int) $request->comment_id;  // Cast commentId to integer to avoid type mismatch
+
+        // Ensure that the post has comments, or initialize an empty array
+        $comments = $post->comments ?? [];
+
+        // Debug: Check if the commentId exists in the array
+        // dd($comments, $commentId);  // This will dump the comments array and the commentId being passed
+
+        // Filter out the comment with the matching id
+        $comments = array_filter($comments, function ($comment) use ($commentId) {
+            return (int) $comment['id'] !== $commentId;  // Cast to integer for comparison
+        });
+
+        // Reindex the array after filtering
+        $comments = array_values($comments);
+
+        // Debug: Check the filtered comments
+        // dd($comments);  // This will display the list of comments after filtering
+
+        // Save the updated comments back to the post
+        $post->update(['comments' => $comments]);
+
+        // Return success message
+        return back()->with('success', 'Comment removed successfully!');
+
     }
 
     public function storeComment(Request $request, $postId)
@@ -328,6 +364,7 @@ class CreateController extends Controller
 
         // Add the new comment to the array
         $comments[] = [
+            'id' => rand(),  // Automatically use the logged-in user's email
             'author' => auth()->user()->email,  // Automatically use the logged-in user's email
             'content' => $request->content,
             'created_at' => now(),

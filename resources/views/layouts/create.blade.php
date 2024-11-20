@@ -39,14 +39,14 @@
                 <li class=" text-black">2. Crop the image to read text only </li>
                 <li class=" text-black">3. On the following page edit the output to read as the text. </li>
             </ol>
-            <h2 class="text-bold text-center text-2xl">Example of What your image should look like?</h2>
+            <h2 class="text-bold text-2xl">Example of What your image should look like?</h2>
             <img class="mx-auto m-4 w-2/3" src="{{ asset('/storage/sci-bono-content/example-image-to-text.jpg') }}" alt="Uploaded Image">
             <p class="text-gray-500">
                 Your output will be generated on the following page.<br>
             </p>
             <img class="mx-auto m-4 w-3/4" src="{{ asset('/storage/sci-bono-content/Development.png') }}" alt="Uploaded Image">
             
-            <h1 class="text-xl mb-6 text-gray-800">Upload your image to convert here </h1>
+            <h1 class="text-xl mb-6 text-gray-800">Upload your image to convert below </h1>
             
             <img id="file-image" class="h-auto max-w-full rounded-lg cursor-pointer" 
                      src="{{ asset('/storage/images/default-camera.jpg') }}" alt="image description">

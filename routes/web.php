@@ -101,6 +101,7 @@ Route::get('/my-social-posts', [CreateController::class, 'myposts'])->name('my.p
 Route::get('/public-user-posts/{email}', [CreateController::class, 'viewPublicUserPosts'])->name('public.user.posts');
 
 Route::post('/social-posts/{id}/comments', [CreateController::class, 'storeComment'])->name('comments.store');
+Route::post('/social-posts/{id}/clear-comments', [CreateController::class, 'clearComments'])->name('comments.clear');
 
 Route::get('/pay', [PayfastController::class, 'createPayfastPayment'])->name('payfast.here');
 Route::get('/payfast-cancel', [PayfastController::class, 'cancel_url'])->name('cancel_url');

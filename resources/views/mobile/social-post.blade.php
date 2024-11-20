@@ -60,7 +60,7 @@
 
         {{-- Comments Section --}}
         <div class="mt-4">
-            <h3 class=" text-sm ">Comments:</h3>
+            <h3 class=" text-sm ">Comments:</h3><span  class=" text-sm ">*NB Only the author can remove comments<span>
 
             {{-- Check if comments are not null and not empty --}}
             @if ($socialPost->comments && count($socialPost->comments) > 0)
@@ -76,6 +76,13 @@
                     <p class="text-xs text-gray-500">
                         Posted {{ \Carbon\Carbon::parse($comment['created_at'])->diffForHumans() }}
                     </p>
+                    @if (auth()->user()->email === $socialPost->email)
+                        <form class="text-right mt-4" action="{{ route('comments.clear', [$socialPost->id]) }}" method="POST">
+                            <input type="text" class="hidden" name="comment_id" value="{{ ($comment['id']) }}"/>
+                            @csrf
+                            <button type="submit" class="p-2 text-sm rounded-full shadow-lg">  <i class="fa-solid fa-xmark"></i> Clear </button>
+                        </form>
+                    @endif
                 </div>
                 @endforeach
             @else
