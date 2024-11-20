@@ -45,7 +45,11 @@
                 Your output will be generated on the following page.<br>
             </p>
             <img class="mx-auto m-4 w-3/4" src="{{ asset('/storage/sci-bono-content/Development.png') }}" alt="Uploaded Image">
-            <h1 class="text-xl font-bold mb-6 text-gray-800">Upload your image below </h1>
+            
+            <h1 class="text-xl mb-6 text-gray-800">Upload your image to convert here </h1>
+            
+            <img id="file-image" class="h-auto max-w-full rounded-lg cursor-pointer" 
+                     src="{{ asset('/storage/images/default-camera.jpg') }}" alt="image description">
                 
             <input type="file" name="image" id="image" class="w-full px-4 py-2 my-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
             @error('image')
@@ -72,6 +76,55 @@
 
     </form>
     </div>
+    
+        
+    <script src="https://unpkg.com/browser-image-compression@latest/dist/browser-image-compression.js"></script>
+    <script>
+    // Function to compress and preview image before uploading
+    async function handleImageUpload(imgId, inputId) {
+        const imgElement = document.getElementById(imgId);
+        const fileInput = document.getElementById(inputId);
+
+        imgElement.addEventListener('click', () => {
+        fileInput.click();
+        });
+
+        fileInput.addEventListener('change', async (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            try {
+            // Compress the image
+            const compressedBlob = await imageCompression(file, {
+                maxSizeMB: 1,   // Max size 1MB
+                maxWidthOrHeight: 1920,  // Resize to max width/height 1920px
+                useWebWorker: true
+            });
+
+            // Convert the Blob back to a File object
+            const compressedFile = new File([compressedBlob], file.name, { type: file.type });
+
+            // Preview the compressed image
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imgElement.src = e.target.result;  // Preview the compressed image
+            };
+            reader.readAsDataURL(compressedFile);  // Use the compressed file
+
+            // Update the file input with the compressed file
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(compressedFile);
+            fileInput.files = dataTransfer.files;
+            } catch (error) {
+            console.error("Image compression failed:", error);
+            }
+        }
+        });
+    }
+
+    // Apply the function to each image and file input pair
+    handleImageUpload('file-image', 'image');
+    </script>
+
 </div>
 
 @endsection
