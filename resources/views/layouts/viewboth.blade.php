@@ -42,10 +42,41 @@
                             @endif
                         </p>
 
-                        {{-- Post Description --}}
+                                                {{-- Post Description --}}
                         @if ($post->description)
-                            <p class="mt-2">{{ $post->description }}</p>
+                            {{-- Truncated Description --}}
+                            <div class="mt-2 text-gray-700 overflow-hidden" 
+                                style="max-height: 4.5em; line-clamp: 3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;" 
+                                id="description-{{ $post->id }}">
+                                {{ $post->description }}
+                            </div>
+
+                            {{-- "More"/"Less" Button --}}
+                            <button class="text-blue-500 text-sm mt-2" 
+                                    onclick="toggleText('{{ $post->id }}', this)">
+                                More
+                            </button>
                         @endif
+
+                        <script>
+                            /**
+                             * Toggle truncation for a specific description.
+                             * @param {string} id - The ID of the description element to toggle.
+                             * @param {HTMLElement} button - The button that toggles the truncation.
+                             */
+                            function toggleText(id, button) {
+                                const description = document.getElementById(`description-${id}`);
+                                if (description.style.maxHeight === "4.5em") {
+                                    description.style.maxHeight = "none"; // Remove truncation
+                                    description.style.webkitLineClamp = "unset"; // Remove line clamp
+                                    button.innerText = "Less"; // Change button text
+                                } else {
+                                    description.style.maxHeight = "4.5em"; // Reapply truncation
+                                    description.style.webkitLineClamp = "3"; // Reapply line clamp
+                                    button.innerText = "More"; // Change button text
+                                }
+                            }
+                        </script>
 
                         {{-- Post Image --}}
                         @if ($post->plate === 1)
@@ -81,6 +112,12 @@
                                 </button>
                             </form>
                         @endif
+
+                        <a href="{{ route('science.view.post', ['id' => $post->id]) }}" 
+                        class="p-2 text-sm rounded-full shadow-lg">
+                            View
+                        </a>
+                        
                     @endif
 
                     {{-- Social Post --}}
@@ -104,7 +141,7 @@
                         {{-- Post Description and Info --}}
                         <div class="mt-4">
                             <p class="text-sm text-gray-700">{{ $post->description }}</p>
-                            <p class="text-xs text-gray-500">Posted by: {{ $post->author }}</p>
+                            <p class="text-xs text-gray-500">Posted by {{ $post->author }}</p>
                             <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
                             <div class="text-right">
                                 <p>

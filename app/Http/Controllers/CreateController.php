@@ -48,7 +48,24 @@ class CreateController extends Controller
         $comments = $socialPost->comments ?? []; // If there are no comments, use an empty array
 
         // Pass the post and comments to the view
-        return view('mobile.post', compact('socialPost', 'comments'));
+        return view('mobile.social-post', compact('socialPost', 'comments'));
+    }
+
+    public function viewSciencePost($id)
+    {
+        // Fetch the social post by ID with status 'show'
+        $Post = Post::where('id', $id)
+            ->firstOrFail();
+
+        // Convert the timestamp to a readable format
+        $Post->formatted_time = Carbon::parse($Post->created_at)->diffForHumans();
+
+        // Format the email to extract the author
+        $emailParts = explode('@', $Post->author); // Assuming you have an 'email' column
+        $Post->author = $emailParts[0]; // Get the part before the '@'
+
+        // Pass the post and comments to the view
+        return view('mobile.science-post', compact('Post'));
     }
 
     
