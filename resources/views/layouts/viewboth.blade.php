@@ -110,16 +110,6 @@
                             </a>
                         </div>
 
-                        {{-- Hide Post Option for the User --}}
-                        @if (auth()->user()->email === $post->email)
-                            <form action="{{ route('science.posts.hide', $post->id) }}" method="POST">
-                                @csrf
-                                <button class="px-2 py-2 text-sm ">
-                                    <i class="fa-regular fa-eye-slash"></i> Hide my post
-                                </button>
-                            </form>
-                        @endif
-
                         <a href="{{ route('science.view.post', ['id' => $post->id]) }}" 
                         class="p-2 text-sm rounded-full shadow-lg">
                             View
@@ -161,24 +151,6 @@
                             </div>                        
                         </div>
 
-                        {{-- Show/Hide Post Option for the User --}}
-                        @if (auth()->user()->email === $post->email)
-                            @if ($post->status === 'show')
-                                <form action="{{ route('posts.hide', $post->id) }}" method="POST">
-                                    @csrf
-                                    <button class="px-2 text-sm py-2">
-                                        <i class="fa-regular fa-eye-slash"></i> Hide my post
-                                    </button>
-                                </form>
-                            @else
-                                <form action="{{ route('posts.show', $post->id) }}" method="POST">
-                                    @csrf
-                                    <button class="px-2 text-sm py-2 text-blue-800">
-                                        <i class="fa-regular fa-eye"></i> Show my post
-                                    </button>
-                                </form>
-                            @endif
-                        @endif
                         <a href="{{ route('social.view.post', ['id' => $post->id]) }}" 
                         class="p-2 text-sm rounded-full shadow-lg">
                             View

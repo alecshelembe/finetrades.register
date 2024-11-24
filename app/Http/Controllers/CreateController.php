@@ -61,6 +61,7 @@ class CreateController extends Controller
         $Post->formatted_time = Carbon::parse($Post->created_at)->diffForHumans();
 
         // Format the email to extract the author
+        $Post->email = $Post->author; 
         $emailParts = explode('@', $Post->author); // Assuming you have an 'email' column
         $Post->author = $emailParts[0]; // Get the part before the '@'
 

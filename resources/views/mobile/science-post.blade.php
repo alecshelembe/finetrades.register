@@ -36,13 +36,16 @@
             <p class="text-xs text-gray-500">Posted by {{ $Post->author }}</p>
             <p class="text-xs text-gray-500">{{ $Post->formatted_time }}</p>
         </div>
-        <div class="text-right">
-            <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $Post->id])) }}" 
-                target="_blank" 
-                class="p-2 text-sm rounded-full shadow-lg">
-                <i class="fa-brands fa-whatsapp"></i> Share
-            </a>
-        </div>
+
+        {{-- Hide Post Option for the User --}}
+        @if (auth()->user()->email === $Post->email)
+            <form action="{{ route('science.posts.hide', $Post->id) }}" method="POST">
+                @csrf
+                <button class="px-2 py-2 text-sm ">
+                    <i class="fa-regular fa-eye-slash"></i> Remove my post
+                </button>
+            </form>
+        @endif
        
     </div>
 </div>
