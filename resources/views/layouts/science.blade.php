@@ -46,7 +46,7 @@
                     @if (auth()->user()->email === $post->email)
                           <form action="{{ route('science.posts.hide', $post->id) }}" method="POST">
                               @csrf
-                              <button class="px-2 text-xs py-2 "><i class="fa-regular fa-eye"></i> Hide my post</button>
+                              <button class="px-2 text-xs py-2 "><i class="fa-regular fa-eye"></i> Remove my post</button>
                           </form>
                       @endif
                 </div>   

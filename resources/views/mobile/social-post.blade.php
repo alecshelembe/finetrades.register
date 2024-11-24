@@ -25,7 +25,7 @@
                     @endforeach
                 </div>
             @else
-                <p>No images found.</p>
+                <!-- <p>No images found.</p> -->
             @endif
         </div>
 
@@ -34,7 +34,8 @@
             <p class="text-gray-700">{{ $socialPost->description }}</p>
             <p class="text-xs text-gray-500">Posted by {{ $socialPost->author }}</p>
             <p class="text-xs text-gray-500">{{ $socialPost->formatted_time }}</p>
-
+        </div>
+        <div>
             {{-- Toggle post visibility if user is the author --}}
             @if (auth()->user()->email === $socialPost->email)
                 @if ($socialPost->status === 'show')
@@ -55,9 +56,9 @@
                         <i class="fa-brands fa-whatsapp"></i> Share
                     </a>
                 </div>
-
             @endif
         </div>
+
 
         {{-- Comments Section --}}
         <div class="mt-4">

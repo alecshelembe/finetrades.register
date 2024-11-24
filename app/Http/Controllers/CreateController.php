@@ -75,6 +75,7 @@ class CreateController extends Controller
             // Fetch all social posts with status 'show'
             $socialPosts = SocialPost::where('status', 'show')
             ->orderBy('created_at', 'desc')
+            ->limit(10)
             ->get();
             
         // Convert the timestamps to a readable format
@@ -95,6 +96,7 @@ class CreateController extends Controller
     // Fetch all social posts with status 'show'
     $socialPosts = SocialPost::where('status', 'show')
     ->orderBy('created_at', 'desc')
+    ->limit(10)
     ->get();
 
     // Convert the timestamps to a readable format
@@ -107,7 +109,7 @@ class CreateController extends Controller
 
     // Fetch data from the 'posts' table
     $posts = Post::where('status', 'show')
-    ->orderBy('created_at', 'desc')
+    ->limit(10)
     ->get();
 
     foreach ($posts as $post) {
@@ -130,6 +132,7 @@ class CreateController extends Controller
         // Fetch data from the 'posts' table
         $posts = Post::where('status', 'show')
         ->orderBy('created_at', 'desc')
+        ->limit(10)
         ->get();
 
         foreach ($posts as $post) {
