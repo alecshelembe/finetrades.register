@@ -141,20 +141,12 @@
                             <p class="text-xs text-gray-500">Posted by {{ $post->author }}</p>
                             <p class="text-xs text-gray-500">{{ $post->formatted_time }}</p>
                             <div class="text-right">
-                                <p>
-                                    <a href="https://wa.me/?text={{ urlencode(route('social.view.post', ['id' => $post->id])) }}" 
-                                        target="_blank" 
-                                        class="p-2 text-sm rounded-full shadow-lg">
-                                        <i class="fa-brands fa-whatsapp"></i> share
-                                    </a>
-                                </p>
+                                <a href="{{ route('social.view.post', ['id' => $post->id]) }}" class="p-2 text-sm rounded-full shadow-lg">
+                                    View
+                                </a>
                             </div>                        
                         </div>
 
-                        <a href="{{ route('social.view.post', ['id' => $post->id]) }}" 
-                        class="p-2 text-sm rounded-full shadow-lg">
-                            View
-                        </a>
                     @endif
                 </div>
             @endforeach
