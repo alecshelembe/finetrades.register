@@ -1,6 +1,7 @@
 @extends('welcome')
 
 @section('content')
+
 @include('layouts.navbar')
 
 <div class="max-w-3xl mx-auto p-2 bg-white rounded-lg">

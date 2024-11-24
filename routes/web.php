@@ -43,7 +43,6 @@ Route::get('/register', [UserController::class, 'create'])->name('users.create')
 Route::get('/register-ref', [UserController::class, 'createRef'])->name('users.create.ref');
 
 Route::post('/register-user', [UserController::class, 'store'])->name('users.store');
-
 Route::get('/', [CreateController::class, 'viewboth'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
@@ -112,6 +111,8 @@ Route::post('/payfast/process', [PayfastController::class, 'payfastPayment'])->n
 Route::post('/generate', [OpenAIController::class, 'generate'])->name('generate');
 
 Route::get('/test-generate', [DirectorController::class, 'generate'])->name('test.generate');
+
+
 
 
 

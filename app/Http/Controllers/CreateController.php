@@ -242,26 +242,31 @@ class CreateController extends Controller
     public function savePost(Request $request)
     {
         $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:10240',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
-        
-        // Handle image upload if provided
-        $imagePath = 'images/default-profile.png'; // Default image path
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // Save the image in storage/app/public/images
-            $image->storeAs('public/images/uploaded/', $imageName);
-            // Update image path to be stored in the database
-            $imagePath = 'storage/images/uploaded/' . $imageName; // Use 'storage' here for generating public-facing URL
+
+        $validatedData['description'] = strip_tags($validatedData['description']);
+
+         // Handle each image
+         if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                if ($file) {
+                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    // Save the image in storage/app/public/images/social/
+                    $file->storeAs('public/images/science/', $imageName);
+                    // Update image path to be stored in the database
+                    $imagePath = 'storage/images/science/' . $imageName; // Use 'storage' here for generating public-facing URL
+                    $imagePaths[] = $imagePath;
+                }
+            }
         }
         
         $post = Post::create([
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
-            'image_url' => $imagePath,
+            'image_url' => json_encode($imagePaths),
             'author' => auth()->user()->email, // Add the logged-in user's email
         ]);
 

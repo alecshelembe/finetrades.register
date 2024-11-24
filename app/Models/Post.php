@@ -12,5 +12,8 @@ class Post extends Model
     // Define the attributes that are mass assignable
     protected $fillable = ['title', 'description', 'image_url', 'author','status'];
 
-    // Define any relationships or custom methods here
+    // Cast the 'images' field to an array
+    protected $casts = [
+        'image_url' => 'array',
+    ];
 }

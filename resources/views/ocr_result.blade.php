@@ -21,15 +21,6 @@
             <p class="text-red-600  mt-1">{{ $message }}</p>
             @enderror
         </div>
-        
-        <!-- Image Upload -->
-        <div class="mb-4">
-            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Image Post</label>
-            <input type="file" name="image" id="image" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-            @error('image')
-            <p class="text-red-600  mt-1">{{ $message }}</p>
-            @enderror
-        </div>
 
         <!-- Description -->
         <div class="mb-4">
@@ -44,15 +35,18 @@
         <script>
             CKEDITOR.replace('description');
         </script>
-        <div>
-            <img id="image-preview" 
-            src="" 
-            name="image" 
-            alt="Image Preview"  
-            style="width: 150px; height: 150px; border-radius: 50%;" 
-            class="mx-auto hidden object-cover shadow-md" />
+
+         <!-- Image Upload -->
+         <p>Upload pictures for people to browse</p>
+        <div class="grid grid-cols-2 gap-4 my-4">
+            @for ($i = 1; $i <= 4; $i++)
+                <figure class="max-w-lg relative">
+                    <img id="img-{{ $i }}" class="h-auto max-w-full rounded-lg cursor-pointer" 
+                        src="{{ asset('/storage/images/default-camera.jpg') }}" alt="image description">
+                    <input type="file" id="file-input-{{ $i }}" class="hidden" name="images[]" accept="image/*">
+                </figure>
+            @endfor
         </div>
-        
         
         <!-- Submit Button -->
         <div class="text-right">
@@ -61,6 +55,58 @@
             </button>
         </div>
     </form>
+
+    
+<script src="https://unpkg.com/browser-image-compression@latest/dist/browser-image-compression.js"></script>
+<script>
+  // Function to compress and preview image before uploading
+  async function handleImageUpload(imgId, inputId) {
+    const imgElement = document.getElementById(imgId);
+    const fileInput = document.getElementById(inputId);
+
+    imgElement.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        try {
+          // Compress the image
+          const compressedBlob = await imageCompression(file, {
+            maxSizeMB: 1,   // Max size 1MB
+            maxWidthOrHeight: 1920,  // Resize to max width/height 1920px
+            useWebWorker: true
+          });
+
+          // Convert the Blob back to a File object
+          const compressedFile = new File([compressedBlob], file.name, { type: file.type });
+
+          // Preview the compressed image
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            imgElement.src = e.target.result;  // Preview the compressed image
+          };
+          reader.readAsDataURL(compressedFile);  // Use the compressed file
+
+          // Update the file input with the compressed file
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(compressedFile);
+          fileInput.files = dataTransfer.files;
+        } catch (error) {
+          console.error("Image compression failed:", error);
+        }
+      }
+    });
+  }
+
+  // Apply the function to each image and file input pair
+  handleImageUpload('img-1', 'file-input-1');
+  handleImageUpload('img-2', 'file-input-2');
+  handleImageUpload('img-3', 'file-input-3');
+  handleImageUpload('img-4', 'file-input-4');
+</script>
+
 </div>
 
 @endsection
