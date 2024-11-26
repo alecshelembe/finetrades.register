@@ -231,11 +231,17 @@ class CreateController extends Controller
         }
     
         // Save the description and image paths to the database
-        SocialPost::create([
-            'description' => $request->description,
-            'images' => json_encode($imagePaths),
-            'email' => auth()->user()->email, // Get the logged-in user's email
-        ]);
+
+        $postData = [
+            'description' => $validatedData['description'],
+            'email' => auth()->user()->email, // Add the logged-in user's email
+        ];
+        
+        if (isset($imagePaths) && !empty($imagePaths)) {
+            $postData['images'] = json_encode($imagePaths);
+        }
+
+        $post = SocialPost::create($postData);
     
         return redirect()->route('home')->with([
             'success' => 'Post Created Successfully'
@@ -267,13 +273,18 @@ class CreateController extends Controller
             }
         }
         
-        $post = Post::create([
+        $postData = [
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
-            'image_url' => json_encode($imagePaths),
             'author' => auth()->user()->email, // Add the logged-in user's email
-        ]);
-
+        ];
+        
+        if (isset($imagePaths) && !empty($imagePaths)) {
+            $postData['image_url'] = json_encode($imagePaths);
+        }
+        
+        $post = Post::create($postData);
+        
         return redirect()->route('home')->with([
             'success' => 'Post Created Successfully'
         ]);
