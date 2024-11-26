@@ -10,48 +10,99 @@
             <h5>No Posts here..</h5>
         </div>
     @else
-            @foreach($posts as $post)
-            <div>
-                {{-- <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{$post->image_url}}" alt=""> --}}
-                <h3 class="text-bold text-2xl mb-2">{{$post->title}}</h3>
-                @if ($post->verified === 1)
-                    <p class="text-sm mt-2"><i class="fa-solid fa-circle-check"></i> Verified</p>
-                    {{-- <p class="text-sm mt-2"><i class="fa-solid fa-circle-check"></i> {{$post->author}}</p> --}}
+    <div class="flex justify-end">
+        <button id="toggleView" class="px-4 py-2 text-white bg-blue-500 rounded-lg"><i class="fa-regular fa-eye"></i> View</button>
+    </div>
+    <div id="postContainer" class="grid grid-cols-2 gap-4 mt-4 lg:grid-cols-4">
+        @foreach($posts as $post)
+            <div class="p-2  bg-white">
+                <div class="grid grid-cols-2 gap-4">
+                    {{-- Parse and display images --}}
+                    @php
+                        $images = json_decode($post->images, true); // Decode JSON
+                    @endphp
+    
+                    @if (is_array($images) && count($images) > 0)
+                        @foreach ($images as $image)
+                            <figure class="max-w-lg relative">
+                                <img class="h-auto max-w-full rounded-lg cursor-pointer" 
+                                     src="{{ asset($image) }}" 
+                                     alt="Post image"
+                                     loading="lazy">
+                            </figure>
+                        @endforeach
                     @else
-                    <p class="text-sm mt-2"><i class="fa-regular fa-circle-question"></i> Not Verified </p>
-                @endif
-                @if ($post->description != 0)
-                    <p>{{ $post->description }}</p>
-                @endif
-                
-                @if ($post->plate === 1)
-                    <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg mt-10">
-                        <img loading="lazy" class="h-auto md:w-full" src="{{$post->image_url}}" alt="">
-                    </div>    
-                    @else
-                    {{-- <p>This post is not verified.</p> --}}
-                @endif
-                <div>
-                    <form action={{ route('returnSpeech') }} target="_blank" method="POST">
-                        @csrf
-                        <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$post->description}}</textarea>
-                        <input type="text" name="audio_id" value="<?php echo(rand());?>" hidden>
-                        <button type="submit">Generate Speech <i class=" fa-solid fa-volume-high"></i></button>
-                    </form>
+                        <!-- <p>No images found.</p> -->
+                    @endif
                 </div>
-                <div>
-                    <p class="text-sm mt-2">By {{$post->author}}</p>
-                    <p class="text-sm">{{$post->formatted_time}}</p>
-                    {{-- <p class="text-sm">{{$post->created_at}}</p>formatted_time --}}
-                    @if (auth()->user()->email === $post->email)
-                          <form action="{{ route('science.posts.hide', $post->id) }}" method="POST">
-                              @csrf
-                              <button class="px-2 text-xs py-2 "><i class="fa-regular fa-eye"></i> Remove my post</button>
-                          </form>
-                      @endif
-                </div>   
+     
+                {{-- Display post description and email --}}
+                <div class="mt-4">
+                    <p class="text-lg font-bold">{{ $post->title }}</p>
+                    @if ($post->description)
+                            {{-- Truncated Description --}}
+                            <div class="mt-2 text-gray-700 overflow-hidden" 
+                                style="max-height: 4.5em; line-clamp: 3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;" 
+                                id="description-{{ $post->id }}">
+                                {{ $post->description }}
+                            </div>
+
+                            {{-- "More"/"Less" Button --}}
+                            <button class="text-blue-500 text-sm mt-2" 
+                                    onclick="toggleText('{{ $post->id }}', this)">
+                                More
+                            </button>
+                        @endif
+
+                    <script>
+                            /**
+                             * Toggle truncation for a specific description.
+                             * @param {string} id - The ID of the description element to toggle.
+                             * @param {HTMLElement} button - The button that toggles the truncation.
+                             */
+                            function toggleText(id, button) {
+                                const description = document.getElementById(`description-${id}`);
+                                if (description.style.maxHeight === "4.5em") {
+                                    description.style.maxHeight = "none"; // Remove truncation
+                                    description.style.webkitLineClamp = "unset"; // Remove line clamp
+                                    button.innerText = "Less"; // Change button text
+                                } else {
+                                    description.style.maxHeight = "4.5em"; // Reapply truncation
+                                    description.style.webkitLineClamp = "3"; // Reapply line clamp
+                                    button.innerText = "More"; // Change button text
+                                }
+                            }
+                        </script>
+                    
+                    <div class="text-right">
+                        <a href="{{ route('science.view.post', ['id' => $post->id]) }}" 
+                        class=" p-2 text-sm rounded-full shadow-lg">
+                            View
+                        </a>
+                    </div>
+                    
+                </div>
             </div>
-            @endforeach
+        @endforeach
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleView');
+        const postContainer = document.getElementById('postContainer');
+        
+        let isGrid = true;
+        
+        toggleButton.addEventListener('click', function() {
+            if (isGrid) {
+                postContainer.classList.remove('grid', 'grid-cols-2');
+                postContainer.classList.add('flex', 'flex-col');
+            } else {
+                postContainer.classList.remove('flex', 'flex-col');
+                postContainer.classList.add('grid', 'grid-cols-2');
+            }
+            isGrid = !isGrid;
+        });
+    </script>
     @endif
     
 @endsection
