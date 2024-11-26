@@ -54,7 +54,7 @@ class CreateController extends Controller
     public function viewSciencePost($id)
     {
         // Fetch the social post by ID with status 'show'
-        $Post = Post::where('id', $id)
+        Post::where('id', $id)
             ->firstOrFail();
 
         // Convert the timestamp to a readable format
@@ -151,7 +151,7 @@ class CreateController extends Controller
     public function scienceHide($id)
     {
         // Find the post by ID
-        $post = Post::findOrFail($id);
+        Post::findOrFail($id);
         
         // Check if the logged-in user's author matches the post's email
         if (auth()->user()->email === $post->author) {
@@ -170,7 +170,7 @@ class CreateController extends Controller
     public function hide($id)
     {
         // Find the post by ID
-        $post = SocialPost::findOrFail($id);
+        SocialPost::findOrFail($id);
         
         // Check if the logged-in user's email matches the post's email
         if (auth()->user()->email === $post->email) {
@@ -189,7 +189,7 @@ class CreateController extends Controller
     public function show($id)
     {
         // Find the post by ID
-        $post = SocialPost::findOrFail($id);
+        SocialPost::findOrFail($id);
         
         // Check if the logged-in user's email matches the post's email
         if (auth()->user()->email === $post->email) {
@@ -209,9 +209,9 @@ class CreateController extends Controller
     public function saveSocialPost(Request $request)
     {
         // Validate inputs
-        $request->validate([
+        $validatedData = $request->validate([
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
         ]);
     
         $imagePaths = [];
@@ -220,7 +220,7 @@ class CreateController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 if ($file) {
-                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    $imageName = time() . '_'.rand().auth()->user()->email.'.'.$file->getClientOriginalExtension();
                     // Save the image in storage/app/public/images/social/
                     $file->storeAs('public/images/social/', $imageName);
                     // Update image path to be stored in the database
@@ -241,7 +241,7 @@ class CreateController extends Controller
             $postData['images'] = json_encode($imagePaths);
         }
 
-        $post = SocialPost::create($postData);
+        SocialPost::create($postData);
     
         return redirect()->route('home')->with([
             'success' => 'Post Created Successfully'
@@ -259,13 +259,11 @@ class CreateController extends Controller
 
         $imagePaths = [];
 
-        $validatedData['description'] = strip_tags($validatedData['description']);
-
          // Handle each image
          if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 if ($file) {
-                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    $imageName = time() . '_'.rand().auth()->user()->email.'.'.$file->getClientOriginalExtension();
                     // Save the image in storage/app/public/images/social/
                     $file->storeAs('public/images/science/', $imageName);
                     // Update image path to be stored in the database
@@ -287,7 +285,7 @@ class CreateController extends Controller
         
         // dd(json_encode($imagePaths)); // Check the actual size of the JSON data
 
-        $post = Post::create($postData);
+        Post::create($postData);
         
         return redirect()->route('home')->with([
             'success' => 'Post Created Successfully'
@@ -343,7 +341,7 @@ class CreateController extends Controller
         $request->validate(['comment_id' => 'required|integer']);
 
         // Find the post
-        $post = SocialPost::findOrFail($postId);
+        SocialPost::findOrFail($postId);
 
         // Get the commentId from the request
         $commentId = (int) $request->comment_id;  // Cast commentId to integer to avoid type mismatch
@@ -381,7 +379,7 @@ class CreateController extends Controller
         // echo"hello world";
         // exit();
 
-        $post = SocialPost::findOrFail($postId);
+        SocialPost::findOrFail($postId);
 
         // Get existing comments or initialize an empty array
         $comments = $post->comments ?? [];

@@ -48,7 +48,7 @@
                             <div class="mt-2 text-gray-700 overflow-hidden" 
                                 style="max-height: 4.5em; line-clamp: 3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;" 
                                 id="description-{{ $post->id }}">
-                                {{ $post->description }}
+                                {!! $post->description !!}
                             </div>
 
                             {{-- "More"/"Less" Button --}}

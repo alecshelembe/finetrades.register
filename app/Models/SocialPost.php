@@ -10,6 +10,8 @@ class SocialPost extends Model
 {
     use HasFactory;
 
+    protected $table = 'social_posts';
+
     // Allow mass assignment for these fields
     protected $fillable = ['description', 'images', 'email','status','comments'];
 

@@ -7,10 +7,15 @@
 <div class="max-w-3xl mx-auto p-2 bg-white rounded-lg">
     {{-- Post Container --}}
     <div class="p-2 bg-white">
-    <div>
+
+        {{-- Display post description and email --}}
+        <p class="text-2xl font-bold">{{ $Post->title }}</p>
+        <div class="mt-4">
+            <p class="text-gray-700 my-2">{{ $Post->description }}</p>
+            <div>
             {{-- Parse and display images --}}
             @php
-                $images = json_decode($Post->images, true); // Decode JSON for a single post
+                $images = json_decode($Post->image_url, true); // Decode JSON for a single post
             @endphp
 
             @if (is_array($images) && count($images) > 0)
@@ -28,11 +33,6 @@
                 <!-- <p>No images found.</p> -->
             @endif
         </div>
-
-        {{-- Display post description and email --}}
-        <p class="text-2xl font-bold">{{ $Post->title }}</p>
-        <div class="mt-4">
-            <p class="text-gray-700 my-2">{{ $Post->description }}</p>
             <form action={{ route('returnSpeech') }} target="_blank" method="POST">
                 @csrf
                 <textarea name="text" rows="4" style="display: none;" placeholder="Enter text here">{{$Post->description}}</textarea>
@@ -42,6 +42,7 @@
             <p class="text-xs text-gray-500">Posted by {{ $Post->author }}</p>
             <p class="text-xs text-gray-500">{{ $Post->formatted_time }}</p>
         </div>
+        
         
         <div class="text-right">
             <a href="https://wa.me/?text={{ urlencode(route('science.view.post', ['id' => $Post->id])) }}" 
