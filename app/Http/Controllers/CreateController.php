@@ -54,7 +54,7 @@ class CreateController extends Controller
     public function viewSciencePost($id)
     {
         // Fetch the social post by ID with status 'show'
-        Post::where('id', $id)
+        $Post = Post::where('id', $id)
             ->firstOrFail();
 
         // Convert the timestamp to a readable format
@@ -151,7 +151,7 @@ class CreateController extends Controller
     public function scienceHide($id)
     {
         // Find the post by ID
-        Post::findOrFail($id);
+        $post = Post::findOrFail($id);
         
         // Check if the logged-in user's author matches the post's email
         if (auth()->user()->email === $post->author) {
@@ -170,7 +170,7 @@ class CreateController extends Controller
     public function hide($id)
     {
         // Find the post by ID
-        SocialPost::findOrFail($id);
+        $post = SocialPost::findOrFail($id);
         
         // Check if the logged-in user's email matches the post's email
         if (auth()->user()->email === $post->email) {
@@ -189,7 +189,7 @@ class CreateController extends Controller
     public function show($id)
     {
         // Find the post by ID
-        SocialPost::findOrFail($id);
+        $post = SocialPost::findOrFail($id);
         
         // Check if the logged-in user's email matches the post's email
         if (auth()->user()->email === $post->email) {
@@ -241,7 +241,7 @@ class CreateController extends Controller
             $postData['images'] = json_encode($imagePaths);
         }
 
-        SocialPost::create($postData);
+        $post = SocialPost::create($postData);
     
         return redirect()->route('home')->with([
             'success' => 'Post Created Successfully'
@@ -285,7 +285,7 @@ class CreateController extends Controller
         
         // dd(json_encode($imagePaths)); // Check the actual size of the JSON data
 
-        Post::create($postData);
+        $post = Post::create($postData);
         
         return redirect()->route('home')->with([
             'success' => 'Post Created Successfully'
@@ -341,7 +341,7 @@ class CreateController extends Controller
         $request->validate(['comment_id' => 'required|integer']);
 
         // Find the post
-        SocialPost::findOrFail($postId);
+        $post = SocialPost::findOrFail($postId);
 
         // Get the commentId from the request
         $commentId = (int) $request->comment_id;  // Cast commentId to integer to avoid type mismatch
@@ -379,7 +379,7 @@ class CreateController extends Controller
         // echo"hello world";
         // exit();
 
-        SocialPost::findOrFail($postId);
+        $post = SocialPost::findOrFail($postId);
 
         // Get existing comments or initialize an empty array
         $comments = $post->comments ?? [];
