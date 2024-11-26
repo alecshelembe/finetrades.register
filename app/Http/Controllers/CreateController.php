@@ -257,6 +257,8 @@ class CreateController extends Controller
             'description' => 'required|string',
         ]);
 
+        $imagePaths = [];
+
         $validatedData['description'] = strip_tags($validatedData['description']);
 
          // Handle each image
@@ -283,6 +285,8 @@ class CreateController extends Controller
             $postData['image_url'] = json_encode($imagePaths);
         }
         
+        // dd(json_encode($imagePaths)); // Check the actual size of the JSON data
+
         $post = Post::create($postData);
         
         return redirect()->route('home')->with([
