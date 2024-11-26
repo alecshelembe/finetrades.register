@@ -11,7 +11,7 @@
         {{-- Display post description and email --}}
         <p class="text-2xl font-bold">{{ $Post->title }}</p>
         <div class="mt-4">
-            <p class="text-gray-700 my-2">{{ $Post->description }}</p>
+            <p class="text-gray-700 my-2">{!! $Post->description !!}</p>
             <div>
             {{-- Parse and display images --}}
             @php
