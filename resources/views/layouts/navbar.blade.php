@@ -210,6 +210,11 @@ bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         </ul>
       </div>
     </div>
+    <a href="{{ route('create.post') }}" class="fixed bottom-5 right-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+        </a>
   </nav>
   
   

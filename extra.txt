@@ -61,7 +61,7 @@ wget https://wordpress.org/latest.zip
 sudo chown -R www-data:www-data /var/www/html/wordpress
 cd /var/www/html/wordpress
 find . -type d -exec chmod 755 {} \;
-find . -type f -exec chmod 644 {} \;
+find . -type f -exec chmod 644 {} \;`
 chmod 600 wp-config.php
 sudo chown -R www-data:www-data /var/www/html/wordpress
 
@@ -77,23 +77,28 @@ curl -sS https://getcomposer.org/installer | sudo php
 sudo mv composer.phar composer
 composer
 
-    sudo apt install php8.2-gd -y
-    https://codewithsusan.com/notes/deploy-laravel-on-apache
-    git clone git@github.com:alecshelembe/finetrades.register.git
-    cd demo
-    chown -R www-data storage
-    chown -R www-data bootstrap/cache
-    composer install --optimize-autoloader --no-dev
+sudo apt install php8.2-gd -y
+https://codewithsusan.com/notes/deploy-laravel-on-apache
+git clone git@github.com:alecshelembe/finetrades.register.git
+cd demo
+chown -R www-data storage
+chown -R www-data bootstrap/cache
+composer install --optimize-autoloader --no-dev
 
-    sudo nano /etc/apache2/ports.conf
-    sudo ufw status verbose
-    Listen 8081
-    sudo a2ensite demo.conf
+sudo nano /etc/apache2/ports.conf
+sudo ufw status verbose
+Listen 8081
+sudo a2ensite demo.conf
 
-    cp .env.example .env
+cp .env.example .env
 php artisan key:generate
 
 innodb_log_file_size = 256M
 sudo find /etc -name "my.cnf"
 cd /etc/mysql/mysql.conf.d/
 
+php artisan config:cache
+php artisan config:clear
+php artisan view:clear
+php artisan route:list
+php artisan cache:clear

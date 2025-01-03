@@ -32,9 +32,11 @@
             }
            
         }
+        
 
     </style>
     <body class="m-4">
+        
 
         {{-- <div id="map" style="height: 500px; width: 100%;"></div> --}}
         @yield('content')
