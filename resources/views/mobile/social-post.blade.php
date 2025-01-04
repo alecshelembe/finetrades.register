@@ -62,7 +62,7 @@
 
         {{-- Comments Section --}}
         <div class="mt-4">
-            <h3 class=" text-sm ">Comments:</h3><span  class=" text-sm ">*NB Only the author can remove comments<span>
+            <h3 class=" text-sm ">Comments:</h3>
 
             {{-- Check if comments are not null and not empty --}}
             @if ($socialPost->comments && count($socialPost->comments) > 0)
@@ -102,7 +102,8 @@
                 @enderror
                 <button type="submit" class="p-2 text-sm rounded-full shadow-lg">  <i class="fa-regular fa-comment"></i> Post my comment</button>
             </form>
-        </div>
+        </div> 
+        <span  class=" text-sm ">* Note only the author of this post can manage the comment section<span>
     </div>
 </div>
 @endsection

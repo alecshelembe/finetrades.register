@@ -7,6 +7,19 @@
 <script defer src="{{ asset('js/app.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places" defer></script>
 
+<script>
+     // For first name
+     document.getElementById('floating_first_name').addEventListener('input', function() {
+        var inputVal = this.value; // Get the value from input field
+        document.getElementById('output-card-person-firstname').textContent = inputVal; // Set the value of output field
+    });
+
+    // For last name
+    document.getElementById('floating_last_name').addEventListener('input', function() {
+        var inputVal = this.value; // Get the value from input field
+        document.getElementById('output-card-person-lastname').textContent = ' ' + inputVal; // Set the value of output field with space
+    });
+</script>
 
 
 <div class="mx-auto max-w-sm p-4">
@@ -77,16 +90,16 @@
         <p class="text-red-600  mt-1">{{ $message }}</p>
         @enderror
     </div>
-    <div>
-        <input type="text" name="google_location" id="google_location" value="{{ old('google_location') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-        <input type="text" name="google_latitude" id="google_latitude" value="{{ old('google_latitude') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="google_longitude" id="google_longitude" value="{{ old('google_longitude') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="google_location_type" id="google_location_type" value="{{ old('google_location_type') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="google_postal_code" id="google_postal_code" value="{{ old('google_postal_code') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="google_city" id="google_city" value="{{ old('google_city') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="package_selected" id="package_selected" value="{{ old('package_selected') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="web_source" id="web_source" value="{{ old('web_source') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
-            <input type="text" name="location_id" id="location_id" value="{{ old('location_id') }}" class="hidden text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+    <div class="hidden">
+        <input type="text" name="google_location" id="google_location" value="{{ old('google_location') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+        <input type="text" name="google_latitude" id="google_latitude" value="{{ old('google_latitude') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="google_longitude" id="google_longitude" value="{{ old('google_longitude') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="google_location_type" id="google_location_type" value="{{ old('google_location_type') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="google_postal_code" id="google_postal_code" value="{{ old('google_postal_code') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="google_city" id="google_city" value="{{ old('google_city') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="package_selected" id="package_selected" value="{{ old('package_selected') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="web_source" id="web_source" value="{{ old('web_source') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
+            <input type="text" name="location_id" id="location_id" value="{{ old('location_id') }}" class=" text-center rounded-xl shadow-md w-2/3 text-black my-4 py-2 ">
         </div>
 
           <div class="grid md:grid-cols-2 md:gap-6">
@@ -144,13 +157,6 @@
                 </div>
                 <p class="mx-auto text-center"><span id="output-card-person-firstname" class="font-bold text-xl mb-2"></span><span id="output-card-person-lastname" class="font-bold text-xl mb-2"></span></p>
             
-                <div class="hidden">
-                    <p class="text-gray-700 text-base" id="output_web_source">  </p>
-                    <p class="text-gray-700 text-base" id="output_location_id">  </p>
-                    <p class="text-gray-700 text-base" id="output_package_selected">  </p>
-                    <p class="text-gray-700 text-base" id="output_google_latitude">  </p>
-                    <p class="text-gray-700 text-base" id="output_google_longitude">  </p>
-                </div>
             </div>
                 <!-- <div class="px-6 pt-4 pb-2"> -->
                     <!-- <span class="inline-block bg-gray-200 rounded-full px-3 py-1  font-semibold text-gray-700 mr-2 mb-2">#photography</span> -->

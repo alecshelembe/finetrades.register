@@ -105,11 +105,11 @@ class PayfastController extends Controller
     
             } else {
                 // Referrer does not match the expected host
-                return response()->json(['error' => 'Invalid referrer'], 403);
+                return response()->json(['error' => 'Invalid referrer 0001 '.$referrerHost], 403);
             }
         } else {
             // No referrer set, redirect to cancel URL
-            return response()->json(['error' => 'Invalid referrer'], 403);
+            return response()->json(['error' => 'Invalid referrer 0002 '.$referrerHost], 403);
             // return redirect()->route('cancel_url');
         }
     }

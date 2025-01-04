@@ -37,9 +37,7 @@ function previewImage(event) {
         // Update latitude and longitude
         if (place.geometry) {
             document.getElementById('google_latitude').value = place.geometry.location.lat();
-            document.getElementById('output_google_latitude').value = place.geometry.location.lat();
             document.getElementById('google_longitude').value = place.geometry.location.lng();
-            document.getElementById('output_google_longitude').value = place.geometry.location.lng();
         }
 
         // Update location type
@@ -61,14 +59,11 @@ function previewImage(event) {
 
         // Update additional fields
         document.getElementById('package_selected').value = "package_value"; // Update as needed
-        document.getElementById('output_package_selected').textContent = "package_value"; // Update as needed
         document.getElementById('web_source').value = "web_source_value";   // Update as needed
-        document.getElementById('output_web_source').textContent = "web_source_value";   // Update as needed
 
         // Update location ID
         if (place.place_id) {
             document.getElementById('location_id').value = place.place_id;
-            document.getElementById('output_location_id').textContent = place.place_id;
         }
     });
 
@@ -84,18 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('Google Maps API or Places library is not available.'); // Debugging: Error if API is not loaded
     }
-
-    // For first name
-    document.getElementById('floating_first_name').addEventListener('input', function() {
-        var inputVal = this.value; // Get the value from input field
-        document.getElementById('output-card-person-firstname').textContent = inputVal; // Set the value of output field
-    });
-
-    // For last name
-    document.getElementById('floating_last_name').addEventListener('input', function() {
-        var inputVal = this.value; // Get the value from input field
-        document.getElementById('output-card-person-lastname').textContent = ' ' + inputVal; // Set the value of output field with space
-    });
     
 });
 // // Function to initialize the map
