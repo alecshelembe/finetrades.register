@@ -1,20 +1,7 @@
-php artisan route:clear
-php artisan view:clear
-php artisan cache:clear
-
-
 -----------------------------------------------------------------------------
 ## Hi, from the author, Always give back
 
-CLICK here for images of project
-
-I suggest you install phpmyadmin for quick access to database
-
-<h1><a href="https://alecshelembe.github.io/site/S/register/"> Screenshots of web app</a></h1>
-
-1. create your env file and connect to your mysql database
-3. migrate your database 
-4. run db seed 
+Images and work is subject to copy right @scibono-discovery-center
 
 -----------------------------------------------------------------------------
 
